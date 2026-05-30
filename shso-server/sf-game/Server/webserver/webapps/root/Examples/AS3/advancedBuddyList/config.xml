@@ -1,0 +1,7 @@
+<!-- Client side configuration -->
+<SmartFoxClient>
+	<ip>127.0.0.1</ip>
+	<port>9339</port>
+	<zone>advBuddyList</zone>
+	<debug>true</debug>
+</SmartFoxClient>

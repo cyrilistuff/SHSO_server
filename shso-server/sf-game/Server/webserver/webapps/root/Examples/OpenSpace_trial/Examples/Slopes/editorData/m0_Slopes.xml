@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated with OpenSpace Editor [Wed Oct 29 17:16:25 GMT+0100 2008] -->
+<IsoMapDefinition>
+  
+  <TileSet>
+    <!-- Default placeholder for empty tile -->
+    <tile id=".."/>
+    <!-- Wall 1x -->
+    <tile id="t0" topElevation="32" walkable="1">
+      <skins>
+        <skin className="SkinWall"/>
+      </skins>
+    </tile>
+    <!-- Empty (walkable -->
+    <tile id="t14" walkable="1"/>
+    <!-- Wall 3x -->
+    <tile id="t5" topElevation="96" walkable="1">
+      <skins>
+        <skin className="SkinWall2"/>
+      </skins>
+    </tile>
+    <!-- Wall 2x -->
+    <tile id="t3" topElevation="64" walkable="1">
+      <skins>
+        <skin className="SkinWall1"/>
+      </skins>
+    </tile>
+    <!-- Stair N -->
+    <tile id="t10" topElevation="32" slopeDir="0" walkable="1">
+      <skins>
+        <skin className="SkinStairN"/>
+      </skins>
+    </tile>
+    <!-- Tree -->
+    <tile id="t7">
+      <skins>
+        <skin className="SkinTree" hOffset="-10" vOffset="-50"/>
+      </skins>
+    </tile>
+    <!-- Stair S -->
+    <tile id="t1" topElevation="32" slopeDir="4" walkable="1">
+      <skins>
+        <skin className="SkinStairS" vOffset="15"/>
+      </skins>
+    </tile>
+    <!-- Wall 1x (moss) -->
+    <tile id="t4" topElevation="32" walkable="1">
+      <skins>
+        <skin className="SkinWall"/>
+        <skin className="SkinMoss"/>
+      </skins>
+    </tile>
+    <!-- Stair W -->
+    <tile id="t11" topElevation="32" slopeDir="6" walkable="1">
+      <skins>
+        <skin className="SkinStairW" vOffset="16"/>
+      </skins>
+    </tile>
+    <!-- Stair E -->
+    <tile id="t12" topElevation="32" slopeDir="2" walkable="1">
+      <skins>
+        <skin className="SkinStairE"/>
+      </skins>
+    </tile>
+    <!-- Empty (non-walkable) -->
+    <tile id="t15"/>
+    <!-- Tunnel (rear) -->
+    <tile id="t9">
+      <skins>
+        <skin className="TunnelRear" hOffset="-19" vOffset="-73"/>
+      </skins>
+    </tile>
+    <!-- Tunnel (front) -->
+    <tile id="t8">
+      <skins>
+        <skin className="TunnelFront" hOffset="-77" vOffset="-154"/>
+      </skins>
+    </tile>
+    <!-- Wall 2x (overpass) -->
+    <tile id="t2" topElevation="64" bottomElevation="32" walkable="1">
+      <skins>
+        <skin className="SkinShadow" hOffset="-2" vOffset="60"/>
+        <skin className="SkinWall"/>
+      </skins>
+    </tile>
+    <!-- Stair N (overpass) -->
+    <tile id="t13" topElevation="64" bottomElevation="32" slopeDir="0" walkable="1">
+      <skins>
+        <skin className="SkinShadow" hOffset="-2" vOffset="60"/>
+        <skin className="SkinStairN"/>
+      </skins>
+    </tile>
+  </TileSet>
+  
+  <Backgrounds>
+    <!-- Default placeholder for empty background part -->
+    <background id=".."/>
+    <!-- Background parts -->
+    <background id="SlopesMapBackground" className="SlopesMapBackground" cache="0"/>
+  </Backgrounds>
+  
+  <Map id="root" width="15" height="15">
+    <backgrounds width="900" height="450" rows="1" cols="1" xOffset="0" yOffset="0">
+      <backgroundRow>SlopesMapBackground</backgroundRow>
+    </backgrounds>
+    <accessPoints>
+      <accessPoint px="8" py="4" pz="0"/>
+    </accessPoints>
+    <levels>
+      <level id="0">
+        <levelRow>t0, t14, t14, t14, t14, t14, t14, t14, t14, t14, t5, t14, t14, t14, t14</levelRow>
+        <levelRow>t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14</levelRow>
+        <levelRow>t14, t14, t14, t14, t14, t3, t14, t14, t10, t14, t14, t14, t14, t14, t14</levelRow>
+        <levelRow>t14, t7, t14, t14, t14, t0, t14, t14, t14, t14, t14, t1, t4, t10, t14</levelRow>
+        <levelRow>t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14</levelRow>
+        <levelRow>t14, t14, t11, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14</levelRow>
+        <levelRow>t14, t14, t0, t14, t14, t14, t3, t0, t10, t14, t14, t7, t14, t14, t14</levelRow>
+        <levelRow>t14, t5, t0, t14, t10, t14, t14, t4, t10, t14, t14, t14, t14, t14, t14</levelRow>
+        <levelRow>t14, t14, t12, t14, t14, t14, t14, t14, t14, t14, t14, t0, t10, t14, t14</levelRow>
+        <levelRow>t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t12, t14, t14, t14</levelRow>
+        <levelRow>t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14</levelRow>
+        <levelRow>t14, t14, t14, t14, t14, t14, t14, t14, t15, t15, t9, t14, t14, t7, t14</levelRow>
+        <levelRow>t14, t14, t3, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14</levelRow>
+        <levelRow>t14, t14, t3, t14, t0, t10, t14, t14, t15, t15, t8, t14, t14, t14, t14</levelRow>
+        <levelRow>t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14, t14</levelRow>
+      </level>
+      <level id="1">
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., t2, .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., t2, t13, .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., t4, .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., t10, .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., t13, t13, .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., t2, t2, .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>t2, t2, .., t13, .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+      </level>
+      <level id="2">
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., t4, .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., t0, .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+      </level>
+      <level id="3">
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., t7, .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+        <levelRow>.., .., .., .., .., .., .., .., .., .., .., .., .., .., ..</levelRow>
+      </level>
+    </levels>
+  </Map>
+  
+</IsoMapDefinition>

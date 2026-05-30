@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
+				layout="absolute" 
+				width="324" 
+				height="196" 
+				title="Create new game" creationComplete="init()">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+
+			public function init():void
+			{
+				PopUpManager.centerPopUp(this)
+			}
+			
+			public function validate():void
+			{
+				if (tf_roomName.text.length > 0)
+				{
+					removeMe()
+				}
+			}
+			
+			public function removeMe():void
+			{
+				PopUpManager.removePopUp(this)
+			}
+		]]>
+	</mx:Script>
+	<mx:Label x="10" y="12" text="Game name" fontWeight="bold"/>
+	<mx:Label x="10" y="62" text="Password (optional)" fontWeight="bold"/>
+	<mx:TextInput x="10" y="79" width="190" id="tf_roomPwd" displayAsPassword="true" themeColor="#ffcc00"/>
+	<mx:Label x="221" y="62" text="Spectators" fontWeight="bold"/>
+	<mx:TextInput x="10" y="29" width="190" id="tf_roomName" themeColor="#ffcc00"/>
+	<mx:NumericStepper x="221" y="79" id="ns_maxSpectators" minimum="0" maximum="5" stepSize="1" value="2" themeColor="#ffcc00"/>
+	<mx:Button x="60" y="118" label="Create!" width="91" color="#ff0000" click="validate()" id="bt_create" themeColor="#ffcc00"/>
+	<mx:Button x="156.5" y="118" label="Cancel" width="91" click="removeMe()" themeColor="#ffcc00"/>
+</mx:TitleWindow>

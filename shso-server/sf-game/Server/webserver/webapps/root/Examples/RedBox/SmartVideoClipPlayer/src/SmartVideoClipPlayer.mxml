@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+				layout="absolute" 
+				backgroundGradientColors="[#990000, #ff9900]"
+				creationComplete="init()"
+				frameRate="31"
+				xmlns:custom="components.*">
+
+	<!--
+		SmartFoxServer's RedBox example application:
+		
+		VideoClip Player/Recorder
+		Version 1.0.0
+	-->
+	
+	<mx:Script source="SmartVideoClipPlayer.as" />
+	
+	<mx:Style>
+		global
+		{
+			theme-color: #ffcc00;
+		}
+	</mx:Style>
+	
+	<mx:ViewStack id="viewstack1" width="100%" height="100%" horizontalCenter="0" verticalCenter="0" selectedIndex="0">
+		<mx:Canvas width="100%" height="100%" id="view_login">
+			<custom:SFSLoginPanel horizontalCenter="0" verticalCenter="0" id="loginPanel"/>
+		</mx:Canvas>
+		<mx:Canvas label="" width="100%" height="100%" id="view_main">
+			<mx:Panel width="95%" height="95%" layout="absolute" title="SmartFoxServer - RedBox AVClipManager test application" horizontalCenter="0" verticalCenter="0">
+				<mx:HBox left="10" right="10" top="10" bottom="10">
+					<mx:VBox width="250" height="100%">
+						<mx:Label text=":: PUBLIC CHAT" width="100%" color="#e67408" fontWeight="bold"/>
+						<mx:TextArea width="100%" height="100%" id="ta_chat"/>
+						<mx:HBox width="100%">
+							<mx:TextInput width="100%" id="tf_pubmsg"/>
+							<mx:Button label="Send" width="60" click="bt_send_click()" id="bt_send"/>
+							<mx:Button label="Exit" width="60" color="#ff0000" click="bt_logout_click()"/>
+						</mx:HBox>
+					</mx:VBox>
+					<mx:Accordion width="100%" height="100%" change="onAccordionViewChange()" id="accordion" creationPolicy="all">
+						<mx:Canvas label="A/V Clip playback" width="100%" height="100%">
+							<mx:VBox horizontalAlign="right" left="10" right="10" top="10" bottom="10" verticalGap="10">
+								<mx:Label text=":: AVAILABLE CLIPS" width="100%" fontWeight="bold" color="#e67408"/>
+								<mx:DataGrid width="100%" height="100%" id="dg_clips" dataProvider="{clipsDP}" change="onClipSelected()">
+									<mx:columns>
+										<mx:DataGridColumn headerText="Title" dataField="title"/>
+										<mx:DataGridColumn headerText="Author" dataField="author"/>
+										<mx:DataGridColumn headerText="Size" dataField="size"/>
+										<mx:DataGridColumn headerText="Published on" dataField="published"/>
+										<mx:DataGridColumn headerText="Submitted by" dataField="submitter"/>
+									</mx:columns>
+								</mx:DataGrid>
+								<mx:HBox width="100%">
+									<mx:VBox height="100%">
+										<mx:Label text=":: CLIP PLAYER" width="100%" color="#e67408" fontWeight="bold"/>
+										<custom:VideoPlayer id="videoPlayer"/>
+									</mx:VBox>
+									<mx:VBox width="100%" height="100%">
+										<mx:Label text=":: CLIP METADATA" width="100%" color="#e67408" fontWeight="bold"/>
+										<mx:Form width="100%" paddingBottom="10" paddingLeft="0" paddingRight="0" paddingTop="0">
+											<mx:FormItem label="Duration:">
+												<mx:Label fontWeight="bold" id="lb_duration" text="---"/>
+											</mx:FormItem>
+											<mx:FormItem label="Framerate:">
+												<mx:Label id="lb_framerate" fontWeight="bold" text="---"/>
+											</mx:FormItem>
+											<mx:FormItem label="Size:">
+												<mx:Label fontWeight="bold" id="lb_size" text="---"/>
+											</mx:FormItem>
+										</mx:Form>
+										<mx:Label text=":: CLIP PROPERTIES UPDATE" width="100%" color="#e67408" fontWeight="bold"/>
+										<mx:Form width="100%" paddingBottom="10" paddingLeft="0" paddingRight="0" paddingTop="0">
+											<mx:FormItem label="Title:">
+												<mx:TextInput id="tb_title" borderStyle="solid" borderColor="#aaaaaa" fontWeight="bold"/>
+											</mx:FormItem>
+											<mx:FormItem label="     Author:">
+												<mx:TextInput id="tb_author" borderStyle="solid" borderColor="#aaaaaa" fontWeight="bold"/>
+											</mx:FormItem>
+										</mx:Form>
+										<mx:HBox width="100%">
+											<mx:Button label="Update properties" id="bt_update" enabled="false" click="bt_update_click()"/>
+											<mx:Button label="Delete clip" color="#ff0000" id="bt_delete" disabledColor="#AAB3B3" enabled="false" click="bt_delete_click()"/>
+										</mx:HBox>
+									</mx:VBox>
+								</mx:HBox>
+							</mx:VBox>
+						</mx:Canvas>
+						<mx:Canvas label="A/V Clip recording" width="100%" height="100%">
+							<mx:VBox left="10" right="10" top="10" bottom="10" verticalGap="10">
+								<mx:HBox width="100%">
+									<mx:VBox height="100%">
+										<mx:Label text=":: CLIP PREVIEW" width="100%" color="#e67408" fontWeight="bold"/>
+										<custom:SimpleVideo id="sv_video"/>
+										<mx:HBox width="100%">
+											<mx:Button label="Record" color="#ff0000" click="bt_record_click()"/>
+											<mx:Button label="Stop" click="bt_stop_click()"/>
+											<mx:Button label="Preview" click="bt_preview_click()"/>
+										</mx:HBox>
+									</mx:VBox>
+									<mx:VBox width="100%" height="100%">
+										<mx:Label text=":: CLIP PROPERTIES" width="100%" color="#e67408" fontWeight="bold"/>
+										<mx:Form width="100%" paddingBottom="10" paddingLeft="0" paddingRight="0" paddingTop="0">
+											<mx:FormItem label="Title:">
+												<mx:TextInput id="tb_titleRec" borderStyle="solid" borderColor="#aaaaaa" fontWeight="bold"/>
+											</mx:FormItem>
+											<mx:FormItem label="     Author:">
+												<mx:TextInput id="tb_authorRec" borderStyle="solid" borderColor="#aaaaaa" fontWeight="bold"/>
+											</mx:FormItem>
+										</mx:Form>
+										<mx:HBox width="100%">
+											<mx:Button label="Submit" click="bt_submit_click()"/>
+											<mx:Button label="Cancel" click="bt_cancel_click()"/>
+										</mx:HBox>
+									</mx:VBox>
+								</mx:HBox>
+							</mx:VBox>
+						</mx:Canvas>
+					</mx:Accordion>
+				</mx:HBox>
+			</mx:Panel>
+		</mx:Canvas>
+	</mx:ViewStack>
+	
+</mx:Application>

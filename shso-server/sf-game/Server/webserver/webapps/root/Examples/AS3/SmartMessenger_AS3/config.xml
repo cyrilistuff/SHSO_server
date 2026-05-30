@@ -1,0 +1,6 @@
+<SmartMessengerConfig>
+	<ip>127.0.0.1</ip>
+	<port>9339</port>
+	<zone>messenger</zone>
+	<xtName>smsg</xtName>
+</SmartMessengerConfig>

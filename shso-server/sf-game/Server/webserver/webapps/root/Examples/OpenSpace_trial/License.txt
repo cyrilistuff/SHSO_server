@@ -1,0 +1,43 @@
++-----------------------------------------------------------------------
++ OpenSpace 
++ (c) 2004 - 2008 gotoAndPlay()
++
++ www.openspace-engine.com
++ www.smartfoxserver.com
++ www.gotoandplay.it
++
++  All rights reserved.
+-----------------------------------------------------------------------
+[ OpenSpace License ]
+
+
++-----------------------------------------------------------------------
++ Your Agreement to this License
++-----------------------------------------------------------------------
+Please carefully read the following terms and conditions before installing or using this software.  
+Your installation or use of "OpenSpace" indicates your acceptance of this agreement ("License").
+
+
++-----------------------------------------------------------------------
++ Scope of License
++-----------------------------------------------------------------------
+This License accompanies the distribution of the "OpenSpace" evaluation version only, which contains a number of limitations.
+A different License comes with the "OpenSpace" commercial version.
+
+
++-----------------------------------------------------------------------
++ Intellectual property rights
++-----------------------------------------------------------------------
+You acknowledge that no title to the intellectual property in the software product is transferred to you. You further acknowledge that title and full ownership rights to the software will remain the exclusive property of gotoAndPlay(). You may not rent, lease, modify, reverse engineer, decompile, disassemble, or create derivative commercial components based on OpenSpace.
+
+
++-----------------------------------------------------------------------
++ Warranties
++-----------------------------------------------------------------------
+OpenSpace, and any and all accompanying software, files, data and materials, are distributed and provided "AS IS" and with no warranties of any kind, whether express or implied.
+IN NO EVENT WILL THE AUTHORS BE HELD LIABLE FOR ANY CONSEQUENTIAL, SPECIAL, INCIDENTAL, OR INDIRECT DAMAGES OF ANY KIND ARISING OUT OF THE DELIVERY, PERFORMANCE, OR USE OF THE SOFTWARE, EVEN IF THE POSSIBILITY OF SUCH DAMAGES ARE KNOWN.
+
+
+
+For any questions regarding OpenSpace and this license you can contact info@openspace-engine.com
+

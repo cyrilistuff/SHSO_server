@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="300" height="250" title="SmartFoxServer" textAlign="center">
+	<mx:Script>
+        <![CDATA[
+            import mx.effects.easing.Bounce;
+            
+            /**
+            * Fires the "onLoginBtClick" event in the main application
+            */
+            private function onLoginBtClick():void
+            {
+            	this.parentApplication.onLoginBtClick()
+            }
+            
+            /**
+            * Fires the "onReturnBtClick" event in the main application
+            */
+            private function onReturnBtClick():void
+            {
+            	this.parentApplication.onReturnBtClick()
+            }
+            
+            /**
+            * Waits for transition completion and fires the "onLoginCompleted" event in the main application
+            */
+            private function onLoginCompleted():void
+            {
+            	this.parentApplication.onLoginCompleted()
+            }
+        ]]>
+    </mx:Script>
+	<mx:transitions>
+        <mx:Transition fromState="connection" toState="login">
+        	<mx:Parallel duration="500" >
+            	<mx:Resize target="{this}" easingFunction="Bounce.easeOut"/>
+            	<mx:Dissolve targets="{[content]}" alphaFrom="0" alphaTo="1" />
+            </mx:Parallel>
+        </mx:Transition>
+        <mx:Transition fromState="login_progress" toState="login_error">
+        	<mx:Parallel duration="500" >
+            	<mx:Resize target="{this}" easingFunction="Bounce.easeOut"/>
+                <mx:Dissolve targets="{[tf_error]}" alphaFrom="0" alphaTo="1" />
+            </mx:Parallel>
+        </mx:Transition>
+        <mx:Transition fromState="login_error" toState="login_progress">
+        	<mx:Parallel duration="500" >
+            	<mx:Resize target="{this}" easingFunction="Bounce.easeOut"/>
+                <mx:Dissolve targets="{[tf_error]}" alphaFrom="1" alphaTo="0" />
+            </mx:Parallel>
+        </mx:Transition>
+        <mx:Transition fromState="login_progress" toState="logged">
+        	<mx:Parallel>
+            	<mx:Resize target="{this}" duration="500" easingFunction="Bounce.easeOut"  effectEnd="onLoginCompleted()"/>
+            	<mx:Sequence>
+            		<mx:Dissolve targets="{[content]}" duration="200" alphaFrom="1" alphaTo="0" />
+            		<mx:RemoveChildAction targets="{[content]}" />
+            	</mx:Sequence>
+            </mx:Parallel>
+        </mx:Transition>
+        <mx:Transition fromState="logged" toState="disconnection">
+        	<mx:Parallel duration="500" >
+            	<mx:Resize target="{this}" easingFunction="Bounce.easeOut"/>
+            	<mx:Dissolve targets="{[content]}" alphaFrom="0" alphaTo="1" />
+            </mx:Parallel>
+        </mx:Transition>
+        <mx:Transition fromState="disconnection" toState="connection">
+        	<mx:Parallel duration="5000" >
+            	<mx:Resize target="{this}" easingFunction="Bounce.easeOut"/>
+            	<mx:Dissolve targets="{[lb_connLost, bt_return]}" alphaFrom="1" alphaTo="0" />
+            </mx:Parallel>
+        </mx:Transition>
+    </mx:transitions>
+	<mx:states>
+		<mx:State name="connection">
+			<mx:AddChild relativeTo="{content}" position="lastChild">
+				<mx:Text horizontalCenter="0" verticalCenter="0" id="tf_connection" selectable="false" color="#000000"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{controlbar1}" position="lastChild">
+				<mx:ProgressBar id="progressBar" label=" " labelPlacement="center" indeterminate="true" height="10" barColor="#ff3300"/>
+			</mx:AddChild>
+			<mx:SetProperty target="{controlbar1}" name="height"/>
+		</mx:State>
+		<mx:State name="conn_error" basedOn="connection">
+			<mx:SetProperty target="{progressBar}" name="indeterminate" value="false"/>
+			<mx:SetStyle target="{tf_connection}" name="color" value="#ff0000"/>
+			<mx:SetProperty target="{tf_connection}" name="maxWidth" value="250"/>
+		</mx:State>
+		<mx:State name="login">
+			<mx:SetProperty name="height" value="250"/>
+			<mx:AddChild relativeTo="{content}" position="lastChild">
+				<mx:Form width="100%" paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" defaultButton="{bt_login}">
+					<mx:VBox width="100%" height="100%" horizontalAlign="center">
+						<mx:Label text="Username" id="lb_username" fontWeight="bold"/>
+						<mx:TextInput id="tf_username"/>
+						<mx:Button label="Login" id="bt_login" click="onLoginBtClick()"/>
+					</mx:VBox>
+				</mx:Form>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="login_progress" basedOn="login">
+			<mx:SetProperty target="{tf_username}" name="editable" value="false"/>
+			<mx:SetProperty target="{bt_login}" name="mouseEnabled" value="false"/>
+		</mx:State>
+		<mx:State name="login_error" basedOn="login">
+			<mx:SetProperty name="height" value="300"/>
+			<mx:AddChild relativeTo="{content}" position="lastChild">
+				<mx:Text horizontalCenter="0" verticalCenter="49" id="tf_error" color="#ff0000" maxWidth="250"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="logged" basedOn="login">
+			<mx:RemoveChild target="{content}"/>
+			<mx:SetProperty name="width" value="95%"/>
+			<mx:SetProperty name="height" value="95%"/>
+		</mx:State>
+		<mx:State name="disconnection">
+			<mx:AddChild relativeTo="{content}" position="lastChild">
+				<mx:Label text="Connection was lost" width="100%" textAlign="center" fontWeight="bold" color="#ff0000" fontSize="16" id="lb_connLost"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{content}" position="lastChild">
+				<mx:Button label="Return to login screen" width="200" click="onReturnBtClick()" id="bt_return"/>
+			</mx:AddChild>
+			<mx:SetProperty name="height" value="205"/>
+		</mx:State>
+	</mx:states>
+	<mx:VBox top="10" bottom="10" horizontalAlign="center" id="content" left="10" right="10">
+		<mx:Image id="img_foxey" source="images/foxey.png"/>
+	</mx:VBox>
+	<mx:ControlBar horizontalAlign="center" id="controlbar1">
+	</mx:ControlBar>
+	
+</mx:Panel>

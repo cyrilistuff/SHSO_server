@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel 	xmlns:mx="http://www.adobe.com/2006/mxml" 
+			layout="absolute" 
+			width="400" 
+			title="Browse members"
+			mouseDown="dragStart()"
+			mouseUp="stopDrag()"
+			>
+	<mx:Script>
+		<![CDATA[
+
+			function dragStart():void
+			{
+				if (titleBar.hitTestPoint(stage.mouseX, stage.mouseY, true))
+				{
+					startDrag();
+				}
+			}
+			
+			function dragStop():void
+			{
+				if (titleBar.hitTestPoint(stage.mouseX, stage.mouseY, true))
+				{
+					stopDrag();
+				}
+			}
+
+		]]>
+	</mx:Script>
+	
+	<mx:VBox width="100%" height="100%" top="10" bottom="10" left="10" right="10" toolTip="Browse available users">
+		
+		<mx:Label text="Nickname:" />
+		<mx:TextInput editable="false" id="tf_nick" width="100%" text="{parentApplication.userProfile.nick}"/>
+		
+		<mx:Label text="Age:" />
+		<mx:TextInput editable="false" id="tf_age" width="100%" text="{parentApplication.userProfile.age}"/>
+			
+		<mx:Label text="Location:" />
+		<mx:TextInput editable="false" id="tf_location" width="100%" text="{parentApplication.userProfile.location}"/>
+		
+		<mx:Label text="Email:" />
+		<mx:TextInput editable="false" id="tf_email" width="100%" text="{parentApplication.userProfile.email}"/>
+		
+		<mx:Label text="Hobbies:" />
+		<mx:TextInput editable="false" id="tf_hobbies" width="100%" text="{parentApplication.userProfile.interest}"/>
+		
+		<mx:HBox width="100%" horizontalAlign="center" horizontalGap="42">
+			<mx:Button id="bt_prev" label="&lt; Previous" enabled="false" click="parentApplication.requestPrevUser()" />
+			<mx:Button id="bt_add" label="Add to buddy list" enabled="false" click="parentApplication.bt_add_buddy()"/>
+			<mx:Button id="bt_next" label="Next &gt;"  enabled="false" click="parentApplication.requestNextUser()"/>
+		</mx:HBox>
+		
+	</mx:VBox>
+</mx:Panel>

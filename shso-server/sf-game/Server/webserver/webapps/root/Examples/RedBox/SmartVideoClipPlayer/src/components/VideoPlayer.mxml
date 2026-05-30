@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="320" height="270" creationComplete="init()">
+	
+	<mx:Script>
+        <![CDATA[
+			import mx.core.UIComponent;
+			import flash.media.Video;
+			
+			private const WIDTH:int = 320
+			private const HEIGHT:int = 240
+			
+			private var video:Video
+			private var videoContainer:UIComponent
+			private var currStream:NetStream
+			private var currStreamId:String
+			private var currDuration:int
+			private var volume:Number
+			private var timer:Timer
+			private var seeking:Boolean
+        	
+            public function init():void
+			{
+				// Create the video container
+				videoContainer = new UIComponent()
+				videoContainer.width = WIDTH
+				videoContainer.height = HEIGHT
+				
+				// Create a Video object and add to the container
+				video = new Video(WIDTH, HEIGHT)
+				videoContainer.addChild(video)
+				
+				// Add videoContainer on stage
+				videoPlaceHolder.horizontalScrollPolicy = "off"
+				videoPlaceHolder.verticalScrollPolicy = "off"
+				videoPlaceHolder.addChild(videoContainer)
+				
+				// Setup timer for seek bar update
+				timer = new Timer(100)
+				timer.addEventListener(TimerEvent.TIMER, updateSeekBar)
+				
+				// Set status
+				reset()
+			}
+			
+			public function playStream(ns:NetStream, streamId:String):void
+			{
+				currStream = ns
+				currStreamId = streamId
+				
+				onPlayBtClick()
+			}
+			
+			public function setDuration(dur:Number):void
+			{
+				if (dur > 1)
+				{
+					currDuration = Math.floor(dur)
+					hs_seek.enabled = true
+					hs_seek.maximum = currDuration - 1
+					
+					// Start timer to update seek position
+					timer.start()
+				}
+			}
+			
+			public function setAspectRatio(ratio:Number):void
+			{
+				var h:int = (ratio == 1 ? HEIGHT : WIDTH / ratio)
+				
+				video.height = h
+				videoPlaceHolder.height = h
+			}
+			
+			public function stopStream():void
+			{
+				onStopBtClick()
+			}
+			
+			public function reset():void
+			{
+				onStopBtClick()
+				bt_play.enabled = false
+				currStream = null
+				hs_volume.value = 75
+				currDuration = 0
+				seeking = false
+				setAspectRatio(1)
+			}
+			
+			private function setIsPlaying(isPlaying:Boolean):void
+			{
+				// Set components status
+				bt_play.enabled = !isPlaying
+				bt_pause.enabled = isPlaying
+				bt_stop.enabled = isPlaying
+			}
+			
+			private function onPlayBtClick():void
+			{
+				if (currStream != null)
+				{
+					video.attachNetStream(currStream)
+					currStream.play(currStreamId, 0)
+					
+					setVolume()
+					setAspectRatio(1)
+					
+					// Set status
+					setIsPlaying(true)
+				}
+			}
+			
+			private function onPauseBtClick():void
+			{
+				if (currStream != null)
+					currStream.togglePause()
+			}
+			
+			private function onStopBtClick():void
+			{
+				if (currStream != null)
+				{
+					currStream.play(false)
+					video.attachNetStream(null)
+					video.clear()
+					
+					timer.stop()
+				}
+				
+				// Set status
+				setIsPlaying(false)
+				hs_seek.value = 0
+				hs_seek.enabled = false
+				setAspectRatio(1)
+			}
+			
+			private function onSeekThumbPress():void
+			{
+				seeking = true
+			}
+			
+			private function setVolume():void
+			{
+				volume = hs_volume.value / 100
+				
+				if (currStream != null)
+				{
+					var st:SoundTransform = currStream.soundTransform
+					st.volume = volume
+					currStream.soundTransform = st
+				}
+			}
+			
+			private function updateSeekBar(evt:TimerEvent):void
+			{
+				if (!seeking && currStream.time < hs_seek.maximum)
+					hs_seek.value = currStream.time
+			}
+			
+			private function seekVideo(evt:Event):void
+			{
+				currStream.seek(hs_seek.value)
+				seeking = false
+			}
+        ]]>
+    </mx:Script>
+    
+	<mx:VBox id="mainContainer" horizontalAlign="center" verticalAlign="middle" verticalGap="5" top="0" left="0" right="0">
+		<mx:Canvas id="videoPlaceHolder" width="320" height="240" borderStyle="solid" borderColor="#aaaaaa" borderThickness="2" backgroundColor="#f2f2f2" backgroundImage="@Embed('../images/film.png')">
+		</mx:Canvas>
+		<mx:HBox width="320" verticalAlign="middle" horizontalGap="5" height="25">
+			<mx:Button icon="@Embed('../images/play.png')" id="bt_play" width="22" click="onPlayBtClick()" disabledIcon="@Embed('../images/play_disabled.png')"/>
+			<mx:Button icon="@Embed('../images/pause.png')" id="bt_pause" width="22" click="onPauseBtClick()" disabledIcon="@Embed('../images/pause_disabled.png')"/>
+			<mx:Button icon="@Embed('../images/stop.png')" id="bt_stop" width="22" click="onStopBtClick()" disabledIcon="@Embed('../images/stop_disabled.png')"/>
+			<mx:HSlider allowTrackClick="false" showTrackHighlight="true" id="hs_seek" showDataTip="false" minimum="0" snapInterval="1" thumbPress="onSeekThumbPress()" thumbRelease="seekVideo(event)"/>
+			<mx:Image source="@Embed('../images/volume.png')"/>
+			<mx:HSlider width="45" id="hs_volume" showTrackHighlight="true" showDataTip="false" snapInterval="1" minimum="0" maximum="100" thumbDrag="setVolume()" liveDragging="true"/>
+		</mx:HBox>
+	</mx:VBox>
+	
+</mx:Canvas>

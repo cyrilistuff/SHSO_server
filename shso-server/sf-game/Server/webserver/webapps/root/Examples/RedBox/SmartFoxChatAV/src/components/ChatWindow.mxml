@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
+				layout="absolute" 
+				title="Private chat"
+				showCloseButton="true"
+				mouseDown="dragStart()"
+				mouseUp="dragStop()" 
+				close="parentApplication.bt_closePriv_click(event)">
+	
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.core.UIComponent;
+			
+			public var userId:int
+			public var userName:String
+			public var connId:String
+			
+			private var vd_buddyCam:Video
+			private var vd_myCam:Video
+			
+			//---------------------------------------------------------------------
+			
+			internal function dragStart():void
+			{
+				if (titleBar.hitTestPoint(stage.mouseX, stage.mouseY, true))
+					startDrag()
+			}
+			
+			internal function dragStop():void
+			{
+				if (titleBar.hitTestPoint(stage.mouseX, stage.mouseY, true))
+					stopDrag()
+			}
+			
+			//---------------------------------------------------------------------
+			
+			internal function startAVChat():void
+			{
+				parentApplication.startAVChat(this)
+			}
+			
+			internal function stopAVChat():void
+			{
+				parentApplication.stopAVChat(this)
+			}
+			
+			//---------------------------------------------------------------------
+			
+			internal function acceptAVRequest():void
+			{
+				parentApplication.acceptRequest(this)
+			}
+			
+			internal function declineAVRequest():void
+			{
+				parentApplication.declineRequest(this)
+			}
+			
+			//---------------------------------------------------------------------
+			
+			public function showMyVideo(cam:Camera):void
+			{
+				var uic:UIComponent = new UIComponent()
+				uic.name = "uic"
+				vd_myCam = new Video(200, 150)
+				vd_myCam.attachCamera(cam)
+				vd_myCam.width = 200
+				vd_myCam.height = 150
+				uic.addChild(vd_myCam)
+				myVideoContainer.addChild(uic)
+			}
+			
+			public function showBuddyVideo(ns:NetStream):void
+			{
+				var uic:UIComponent = new UIComponent()
+				uic.name = "uic"
+				vd_buddyCam = new Video(200, 150)
+				vd_buddyCam.attachNetStream(ns)
+				vd_buddyCam.width = 200
+				vd_buddyCam.height = 150
+				uic.addChild(vd_buddyCam)
+				buddyVideoContainer.addChild(uic)
+			}
+			
+			public function stopMyVideo():void
+			{
+				if (vd_myCam != null)
+				{
+					vd_myCam.attachCamera(null)
+					vd_myCam.clear()
+					vd_myCam = null
+					myVideoContainer.removeChild(myVideoContainer.getChildByName("uic"))
+					
+				}
+			}
+			
+			public function stopBuddyVideo():void
+			{
+				if (vd_buddyCam != null)
+				{
+					vd_buddyCam.attachCamera(null)
+					vd_buddyCam.clear()
+					vd_buddyCam = null
+					buddyVideoContainer.removeChild(buddyVideoContainer.getChildByName("uic"))
+				}
+			}
+
+		]]>
+	</mx:Script>
+	
+	
+	<mx:states>
+		<mx:State name="invitation">
+			<mx:AddChild relativeTo="{vbox1}" position="lastChild">
+				<mx:TextArea text="Your user requested to start an audio/video chat" editable="false" width="200" height="33" textAlign="center" id="textarea2" borderStyle="none" color="#FF0000"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{vbox1}" position="lastChild">
+				<mx:HBox width="100%" id="hbox0" horizontalAlign="center">
+					<mx:Button label="Accept" id="bt_acceptReceive" enabled="true" click="acceptAVRequest()" themeColor="#ffcc00"/>
+					<mx:Button label="Decline" id="bt_declineReceive" click="declineAVRequest()"/>
+				</mx:HBox>
+			</mx:AddChild>
+			<mx:RemoveChild target="{hbox3}"/>
+		</mx:State>
+	</mx:states>
+	
+	
+	<mx:HBox left="0" top="0" bottom="0" right="0" paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10">
+		<mx:VBox width="250" height="100%" id="vbox">
+			<mx:TextArea width="100%" height="100%" id="ta_chat" />
+			<mx:Form width="100%" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" defaultButton="{bt_sendMessage}">
+				<mx:HBox width="100%">
+					<mx:TextInput width="100%" id="tf_message"  themeColor="#ffcc00"/>
+					<mx:Button id="bt_sendMessage" label="Send" click="parentApplication.bt_sendPriv_click(event)"	 themeColor="#ffcc00"/>
+				</mx:HBox>
+			</mx:Form>
+			
+		</mx:VBox>
+		<mx:VBox height="100%" id="vbox1" horizontalAlign="center">
+			<mx:Canvas width="200" height="150" backgroundImage="images/AVChatBg.png" id="buddyVideoContainer">
+			</mx:Canvas>
+			<mx:Canvas width="200" height="150" backgroundImage="images/AVChatBg.png" id="myVideoContainer">
+			</mx:Canvas>
+			<mx:HBox width="100%" horizontalAlign="center" id="hbox3">
+				<mx:Button icon="@Embed('../images/startAVChat.png')" id="bt_startAV" disabledIcon="@Embed('../images/startAVChat_disabled.png')" label="Start" themeColor="#ffcc00" click="startAVChat()"/>
+				<mx:Button icon="@Embed('../images/stopAVChat.png')" id="bt_stopAV" disabledIcon="@Embed('../images/stopAVChat_disabled.png')" enabled="false" label="Stop" themeColor="#ffcc00" click="stopAVChat()"/>
+			</mx:HBox>
+		</mx:VBox>
+	</mx:HBox>
+</mx:TitleWindow>

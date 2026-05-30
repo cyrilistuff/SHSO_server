@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="320" height="240" borderStyle="solid" borderColor="#aaaaaa" borderThickness="2" backgroundColor="#f2f2f2" backgroundImage="@Embed('../images/film.png')" creationComplete="init()">
+	<mx:Script>
+        <![CDATA[
+			import mx.core.UIComponent;
+			import flash.media.Video;
+			
+			public var video:Video
+			private var videoContainer:UIComponent
+        	
+            public function init():void
+			{
+				// Create the video container
+				videoContainer = new UIComponent()
+				videoContainer.width = this.width
+				videoContainer.height = this.height
+				
+				// Create a Video object and add to the container
+				video = new Video(videoContainer.width, videoContainer.height)
+				videoContainer.addChild(video)
+				
+				// Add videoContainer on stage
+				this.horizontalScrollPolicy = "off"
+				this.verticalScrollPolicy = "off"
+				this.addChild(videoContainer)
+			}
+			
+			public function reset():void
+			{
+				this.removeChild(videoContainer)
+				init()
+			}
+		]]>
+	</mx:Script>
+</mx:Canvas>

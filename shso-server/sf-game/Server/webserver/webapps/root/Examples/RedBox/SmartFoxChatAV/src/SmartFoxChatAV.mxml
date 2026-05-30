@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+				layout="absolute" 
+				backgroundGradientColors="[#990000, #ff9900]"
+				creationComplete="init()"
+				frameRate="31"
+				xmlns:custom="components.*">
+
+	<!--
+		SmartFoxServer's RedBox example application:
+		
+		SmartFoxChat with integrated a/v capabilities
+		Version 1.0.0
+	-->
+	
+	<mx:Script source="SmartFoxChatAV.as" />
+	
+	<mx:Style>
+		global
+		{
+			theme-color: #ffcc00;
+		}
+	</mx:Style>
+	
+	<mx:ViewStack id="viewstack1" width="100%" height="100%" horizontalCenter="0" verticalCenter="0" selectedIndex="0">
+		<mx:Canvas width="100%" height="100%" id="view_login">
+			<custom:SFSLoginPanel horizontalCenter="0" verticalCenter="0" id="loginPanel"/>
+		</mx:Canvas>
+		<mx:Canvas width="100%" height="100%" id="view_chat" creationComplete="onChatViewReady()">
+			<mx:Panel width="700" height="540" layout="absolute" horizontalCenter="0" verticalCenter="0.5" title="SmartFoxServer - RedBox AVChatManager test application" backgroundColor="#f0f0f0">
+				<mx:VBox right="0" top="0" left="0" paddingBottom="5" paddingLeft="10" paddingRight="10" paddingTop="10" bottom="0">
+					<mx:HDividedBox width="100%" liveDragging="true" height="100%">
+						<mx:VBox height="100%">
+							<mx:Label text=":: PUBLIC CHAT" width="100%"/>
+							<mx:TextArea height="100%" width="100%" id="ta_chat" fontSize="11" themeColor="#ffcc00"/>
+							<mx:Form width="100%" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" defaultButton="{bt_send}">
+								<mx:HBox width="100%">
+									<mx:TextInput width="100%" id="tf_pubmsg" themeColor="#ffcc00"/>
+									<mx:Button label="Send" width="60" click="bt_send_click()" themeColor="#ffcc00" id="bt_send"/>
+									<mx:Button label="Exit" width="60" color="#ff0000" click="bt_logout_click()" themeColor="#ffcc00"/>
+								</mx:HBox>
+							</mx:Form>
+						</mx:VBox>
+						<mx:VBox x="645" y="-10" height="100%" horizontalAlign="right">
+							<mx:Label text=":: ROOM LIST" width="100%"/>
+							<mx:List height="180" id="roomList" rollOverColor="#ffff66" selectionColor="#FFCC00" change="roomList_change()" themeColor="#ffcc00" width="100%"></mx:List>
+							<mx:Button label="Create room" width="100" click="bt_create_click()" themeColor="#ffcc00"/>
+							<mx:Label text=":: USER LIST" width="100%"/>
+							<mx:List height="160" rollOverColor="#ffff66"  selectionColor="#FFCC00" id="userList" change="userList_change()" themeColor="#ffcc00" width="100%"></mx:List>
+							<mx:Button label="Private chat" width="100" enabled="false" id="bt_prvChat" click="bt_prvChat_click()"/>
+						</mx:VBox>
+					</mx:HDividedBox>
+					<mx:HRule width="100%"/>
+					<mx:Label text="(c) 2007 gotoAndPlay() | www.gotoandplay.it | www.smartfoxserver.com" width="100%" textAlign="center" color="#7f7f7f" y="470"/>
+				</mx:VBox>
+			</mx:Panel>
+		</mx:Canvas>
+	</mx:ViewStack>
+	
+</mx:Application>

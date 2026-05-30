@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
+				layout="absolute" 
+				width="324" 
+				height="196" 
+				title="Join game" creationComplete="init()">
+	<mx:states>
+		<mx:State name="noPwd">
+			<mx:RemoveChild target="{label1}"/>
+			<mx:RemoveChild target="{tf_roomPwd}"/>
+		</mx:State>
+	</mx:states>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+
+			public function init():void
+			{
+				PopUpManager.centerPopUp(this)
+			}
+			
+			public function removeMe():void
+			{
+				PopUpManager.removePopUp(this)
+			}
+		]]>
+	</mx:Script>
+	<mx:VBox left="10" top="10" bottom="33" right="10" horizontalAlign="center" verticalAlign="middle">
+		<mx:RadioButtonGroup id="rbg_joinAs"/>
+		<mx:Label text="Join as" fontWeight="bold"/>
+		<mx:HBox width="100%" horizontalAlign="center">
+			<mx:RadioButton label="Player" groupName="rbg_joinAs" selected="true" themeColor="#ffcc00"/>
+			<mx:RadioButton label="Spectator" groupName="rbg_joinAs" id="rb_isSpectator" selected="false" themeColor="#ffcc00"/>
+		</mx:HBox>
+		<mx:Label text="Password" id="label1" fontWeight="bold"/>
+		<mx:TextInput width="120" id="tf_roomPwd" displayAsPassword="true" textAlign="center" themeColor="#ffcc00"/>
+	</mx:VBox>
+	<mx:HBox horizontalAlign="center" left="10" right="10" bottom="10">
+		<mx:Button label="Join" width="91" color="#ff0000" click="removeMe()" id="bt_join" themeColor="#ffcc00"/>
+		<mx:Button label="Cancel" width="91" click="removeMe()" themeColor="#ffcc00"/>
+	</mx:HBox>
+</mx:TitleWindow>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:MessengerComponents="components.*" 
+				layout="absolute" 
+				backgroundGradientColors="[#990000, #ff9900]"
+				creationComplete="initApp()"
+				frameRate="31">
+				
+	<mx:Script source="smartMessenger.as" />
+	
+	<mx:ViewStack id="viewstack" left="10" right="10" top="10" bottom="10" selectedIndex="0" >
+	
+		<!-- Connection View -->
+		<mx:Canvas width="100%" height="100%" id="view_connecting">
+			<mx:Panel width="362" height="260" layout="absolute" horizontalCenter="0.5" verticalCenter="-7" title="::.. Connection ..::" color="#ffffff">
+				<mx:Label y="115" text="Connecting to server ..." horizontalCenter="0.5" width="321" textAlign="center" height="21" fontWeight="bold" fontSize="14" color="#ff0000" id="lb_connStatus"/>
+				<mx:Image y="23" source="images/foxey.png" horizontalCenter="0"/>
+				<mx:ProgressBar y="154" indeterminate="true" enabled="true" horizontalCenter="0" barColor="#ff3300"/>
+			</mx:Panel>
+		</mx:Canvas>
+		
+		<!-- Login View -->
+		<mx:Canvas width="100%" height="100%" id="view_login">
+			<mx:Panel width="362" height="260" layout="absolute" horizontalCenter="0.5" verticalCenter="0.5" title="Login" color="#ffffff">
+				<mx:TextInput x="69.5" y="127" width="203" color="#000000" id="tf_name" textAlign="center" themeColor="#ffcc00"/>
+				<mx:Label y="100" text="Type your user name:" textAlign="center" color="#800000" fontWeight="bold" horizontalCenter="1" width="236"/>
+				<mx:Label x="10" y="197" textAlign="center" color="#ff0000" fontWeight="bold" width="322" id="lb_errorMsg"/>
+				<mx:Button x="124.5" y="169" label="Enter" width="93" color="#333333" id="bt_enter" click="bt_login_click()" themeColor="#ffcc00"/>
+				<mx:Image x="138" y="18" source="images/foxey.png"/>
+			</mx:Panel>
+		</mx:Canvas>
+		
+		<!-- Messenger View -->
+		<mx:Canvas width="100%" height="100%" id="view_chat" creationComplete="onMessengerViewReady()" >
+			<MessengerComponents:UserBrowser id="uBrowser" y="268" x="240"/>
+			<MessengerComponents:ContactList id="cList" height="580" x="680" y="10"/>
+		</mx:Canvas>
+		
+		<!-- Logout View -->
+		<mx:Canvas width="100%" height="100%" id="view_logout">
+			<mx:Panel width="406" height="200" layout="absolute" horizontalCenter="0.5" verticalCenter="-7" title="::.. Logged out ..::" color="#ffffff">
+				<mx:Button y="88" label="Return to login screen" width="198" horizontalCenter="0" color="#333333" click="backToLoginScreen()" themeColor="#ffcc00"/>
+				<mx:Label y="45" text="Connection was lost" horizontalCenter="0" width="273" textAlign="center" height="29" fontWeight="bold" fontSize="18" color="#ff0000"/>
+			</mx:Panel>
+		</mx:Canvas>
+	</mx:ViewStack>
+	
+</mx:Application>

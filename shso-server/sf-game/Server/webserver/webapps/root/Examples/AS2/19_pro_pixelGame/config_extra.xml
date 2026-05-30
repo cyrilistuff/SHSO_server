@@ -1,0 +1,20 @@
+<!--
+	SmartFoxServer 1.4.0b3
+	Server Zone for "Pixel Game" tutorial
+-->
+
+<Zone name="pixel" uCountUpdate="true" customLogin="true">
+	<Rooms>
+		<Room name="The Basement" maxUsers="4" isPrivate="false" isGame="false" isTemp="false" />
+	</Rooms>
+
+	<Extensions>
+		<extension name="pixel"  className="pixelGame.as" type="script" />
+		<!--
+			To use the java extension instead of the Actionscript one substitute the above line with this:
+			
+			<extension name="pixel"  className="it.gotoandplay.extensions.examples.PixelGame" type="java" />
+			
+		-->
+	</Extensions>	
+</Zone>

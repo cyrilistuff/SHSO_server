@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="250" height="150" showCloseButton="false" headerHeight="10" creationComplete="init()">
+	<mx:states>
+		<mx:State name="end">
+			<mx:SetProperty target="{bt_button}" name="label" value="Restart game"/>
+		</mx:State>
+		<mx:State name="waitSpec">
+			<mx:SetProperty target="{bt_button}" name="label" value="Join game"/>
+		</mx:State>
+		<mx:State name="wait">
+			<mx:SetProperty target="{bt_button}" name="visible" value="false"/>
+		</mx:State>
+		<mx:State name="endSpec">
+			<mx:SetProperty target="{bt_button}" name="visible" value="false"/>
+		</mx:State>
+	</mx:states>
+	<mx:Style>
+		@font-face
+		{
+		    font-family: BlasterInfinite;
+			src: url("../blastein.ttf");
+		}
+		
+		.textStyle
+		{
+		    font-family: BlasterInfinite;
+		    font-size: 16pt;
+		    color: #CC0000;
+		}
+	</mx:Style>
+	<mx:Script>
+        <![CDATA[
+            import mx.managers.PopUpManager;
+			
+			[Bindable]
+			private var msg:String;
+			private var fn:Function;
+            
+            public function set message(str:String):void
+            {
+            	msg = str
+            }
+            
+            public function get message():String
+            {
+            	return msg
+            }
+            
+            public function set callBack(cb:Function):void
+            {
+            	fn = cb
+            }
+            
+            public function get callBack():Function
+            {
+            	return fn
+            }
+            
+            private function init():void
+            {
+                // Center the TitleWindow container 
+                // over the control that created it.
+                PopUpManager.centerPopUp(this)
+            }
+        ]]>
+    </mx:Script>
+	<mx:VBox left="10" top="10" right="10" bottom="10" verticalGap="10" id="vbox1" verticalAlign="middle" horizontalAlign="center">
+		<mx:Text width="100%" id="lb_message" styleName="textStyle" selectable="false" textAlign="center" text="{msg}"/>
+	</mx:VBox>
+	<mx:ControlBar horizontalAlign="center" paddingBottom="5" paddingTop="5" id="controlbar1">
+		<mx:Button label="Button" id="bt_button" click="fn()"/>
+	</mx:ControlBar>
+	
+</mx:TitleWindow>

@@ -1,0 +1,17 @@
+<!-- 
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	Client side connection configuration 
+	For more details about the external configuration file check the 
+	client API documentation.
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	
+	www.smartfoxserver.com/docs/
+	
+-->
+<SmartFoxClient>
+	<ip>127.0.0.1</ip>
+	<port>9339</port>
+	<zone>h2dbzone</zone>
+	<debug>true</debug>
+	<socketConnectionTimeout>2000</socketConnectionTimeout>
+</SmartFoxClient>

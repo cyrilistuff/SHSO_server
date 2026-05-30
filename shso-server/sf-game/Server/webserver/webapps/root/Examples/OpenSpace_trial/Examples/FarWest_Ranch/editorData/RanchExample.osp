@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OpenSpaceEditor>
+  <project>
+    <title>Ranch example</title>
+    <skinsSwfLibrary>../libraries/ranchSkins.swf</skinsSwfLibrary>
+    <backgroundsSwfLibrary>../libraries/ranchBackgrounds.swf</backgroundsSwfLibrary>
+    <avatarScale>100</avatarScale>
+    <tileSize>60</tileSize>
+    <tileRatio>0.5</tileRatio>
+    <showTileElevation>1</showTileElevation>
+    <customParamsSeparator>|</customParamsSeparator>
+  </project>
+  <library>
+    <skins>
+      <skin id="s5" className="Fence2c" cache="1" title="Fence2c"/>
+      <skin id="s15" className="RanchWing2" cache="1" title="RanchWing2"/>
+      <skin id="s6" className="RanchMain1" cache="1" title="RanchMain1"/>
+      <skin id="s2" className="Fence1" cache="1" title="Fence1"/>
+      <skin id="s16" className="Sacks" cache="1" title="Sacks"/>
+      <skin id="s7" className="RanchMain2" cache="1" title="RanchMain2"/>
+      <skin id="s19" className="Shelter2" vOffset="-1" cache="1" title="Shelter2"/>
+      <skin id="s3" className="Fence2a" hOffset="1" vOffset="-1" cache="1" title="Fence2a"/>
+      <skin id="s18" className="Shelter1" cache="1" title="Shelter1"/>
+      <skin id="s4" className="Fence2b" cache="1" title="Fence2b"/>
+      <skin id="s17" className="Sensor" cache="1" title="Sensor"/>
+      <skin id="s0" className="Barrel" hOffset="3" vOffset="34" cache="1" title="Barrel"/>
+      <skin id="s20" className="Wheel" cache="1" title="Wheel"/>
+      <skin id="s1" className="Duckboard" vOffset="4" cache="1" title="Duckboard"/>
+      <skin id="s14" className="RanchWing1" cache="1" title="RanchWing1"/>
+    </skins>
+    <tiles>
+      <tile id="t9" allowDrop="0" title="Ranch wing (b)" keywords="building,wood,wall,door">
+        <skinInstances>
+          <skinInstance skinId="s15" name="ranchWing2"/>
+        </skinInstances>
+      </tile>
+      <tile id="t11" walkable="1" allowDrop="0" title="Sensor 1 (outdoor, main door)" OLD_customParams="int|ranchInside|7|3|0" OLD_linkedObjId="ranchMain2">
+        <skinInstances>
+          <skinInstance skinId="s17" customParams="0"/>
+        </skinInstances>
+      </tile>
+      <tile id="t14" walkable="1" allowDrop="0" title="Sensor 4 (indoor, wing door)" OLD_customParams="nav|ranchOutside|6|10|4">
+        <skinInstances>
+          <skinInstance skinId="s17" customParams="4"/>
+        </skinInstances>
+      </tile>
+      <tile id="t0" topElevation="34" allowDrop="0" title="Barrel" keywords="item,wood">
+        <skinInstances>
+          <skinInstance skinId="s0"/>
+        </skinInstances>
+      </tile>
+      <tile id="t17" walkable="1" title="Wheel" keywords="item">
+        <skinInstances>
+          <skinInstance skinId="s20"/>
+        </skinInstances>
+      </tile>
+      <tile id="t5" allowDrop="0" title="Fence W-E (c)" keywords="building,wood">
+        <skinInstances>
+          <skinInstance skinId="s5"/>
+        </skinInstances>
+      </tile>
+      <tile id="t19" title="Empty tile (non-walkable)" keywords="empty"/>
+      <tile id="t16" walkable="1" skinsOnTop="1" allowDrop="0" title="Shelter (b)" keywords="building,wood">
+        <skinInstances>
+          <skinInstance skinId="s19"/>
+        </skinInstances>
+      </tile>
+      <tile id="t3" allowDrop="0" title="Fence W-E (a)" keywords="building,wood">
+        <skinInstances>
+          <skinInstance skinId="s3"/>
+        </skinInstances>
+      </tile>
+      <tile id="t1" walkable="1" title="Duckboard " keywords="building,wood">
+        <skinInstances>
+          <skinInstance skinId="s1"/>
+        </skinInstances>
+      </tile>
+      <tile id="t8" allowDrop="0" title="Ranch wing (a)" keywords="building,wood,window,wall,roof">
+        <skinInstances>
+          <skinInstance skinId="s14" name="ranchWing1"/>
+        </skinInstances>
+      </tile>
+      <tile id="t4" allowDrop="0" title="Fence W-E (b)" keywords="building,wood">
+        <skinInstances>
+          <skinInstance skinId="s4"/>
+        </skinInstances>
+      </tile>
+      <tile id="t12" walkable="1" allowDrop="0" title="Sensor 2 (outdoor, wing door)" OLD_customParams="int|ranchInside|3|8|0" OLD_linkedObjId="ranchWing2">
+        <skinInstances>
+          <skinInstance skinId="s17" customParams="0"/>
+        </skinInstances>
+      </tile>
+      <tile id="t13" walkable="1" allowDrop="0" title="Sensor 3 (indoor, main door)" OLD_customParams="nav|ranchOutside|10|5|4">
+        <skinInstances>
+          <skinInstance skinId="s17" customParams="4"/>
+        </skinInstances>
+      </tile>
+      <tile id="t6" allowDrop="0" title="Ranch main (a)" keywords="building,wood,window,wall,roof">
+        <skinInstances>
+          <skinInstance skinId="s6" name="ranchMain1"/>
+        </skinInstances>
+      </tile>
+      <tile id="t15" walkable="1" skinsOnTop="1" allowDrop="0" title="Shelter (a)" keywords="building,wood">
+        <skinInstances>
+          <skinInstance skinId="s18"/>
+        </skinInstances>
+      </tile>
+      <tile id="t7" allowDrop="0" title="Ranch main (b)" keywords="building,wood,window,door,wall">
+        <skinInstances>
+          <skinInstance skinId="s7" name="ranchMain2"/>
+        </skinInstances>
+      </tile>
+      <tile id="t10" allowDrop="0" title="Sacks" keywords="item">
+        <skinInstances>
+          <skinInstance skinId="s16"/>
+        </skinInstances>
+      </tile>
+      <tile id="t18" walkable="1" title="Empty tile (walkable)" keywords="empty"/>
+      <tile id="t2" allowDrop="0" title="Fence N-S" keywords="building,wood">
+        <skinInstances>
+          <skinInstance skinId="s2"/>
+        </skinInstances>
+      </tile>
+    </tiles>
+    <superTiles>
+      <superTile id="T1" width="4" height="4" title="Shelter" keywords="building">
+        <tileInstances>
+          <tileInstance tileId="t1" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="0" pz="0"/>
+          <tileInstance tileId="t16" px="3" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="2" pz="0"/>
+          <tileInstance tileId="t15" px="0" py="3" pz="0"/>
+        </tileInstances>
+      </superTile>
+      <superTile id="T3" width="1" height="3" title="Fence W-E" keywords="building">
+        <tileInstances>
+          <tileInstance tileId="t5" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t4" px="0" py="1" pz="0"/>
+          <tileInstance tileId="t3" px="0" py="2" pz="0"/>
+        </tileInstances>
+      </superTile>
+      <superTile id="T0" width="8" height="11" title="Ranch" keywords="building">
+        <tileInstances>
+          <tileInstance tileId="t19" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t19" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="0" pz="0"/>
+          <tileInstance tileId="t19" px="3" py="0" pz="0"/>
+          <tileInstance tileId="t19" px="4" py="0" pz="0"/>
+          <tileInstance tileId="t19" px="5" py="0" pz="0"/>
+          <tileInstance tileId="t19" px="6" py="0" pz="0"/>
+          <tileInstance tileId="t7" px="7" py="0" pz="0"/>
+          <tileInstance tileId="t19" px="0" py="1" pz="0"/>
+          <tileInstance tileId="t19" px="1" py="1" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="1" pz="0"/>
+          <tileInstance tileId="t19" px="3" py="1" pz="0"/>
+          <tileInstance tileId="t19" px="4" py="1" pz="0"/>
+          <tileInstance tileId="t19" px="5" py="1" pz="0"/>
+          <tileInstance tileId="t19" px="6" py="1" pz="0"/>
+          <tileInstance tileId="t19" px="7" py="1" pz="0"/>
+          <tileInstance tileId="t19" px="0" py="2" pz="0"/>
+          <tileInstance tileId="t19" px="1" py="2" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="2" pz="0"/>
+          <tileInstance tileId="t19" px="3" py="2" pz="0"/>
+          <tileInstance tileId="t19" px="4" py="2" pz="0"/>
+          <tileInstance tileId="t19" px="5" py="2" pz="0"/>
+          <tileInstance tileId="t19" px="6" py="2" pz="0"/>
+          <tileInstance tileId="t19" px="7" py="2" pz="0"/>
+          <tileInstance tileId="t19" px="0" py="3" pz="0"/>
+          <tileInstance tileId="t19" px="1" py="3" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="3" pz="0"/>
+          <tileInstance tileId="t19" px="3" py="3" pz="0"/>
+          <tileInstance tileId="t19" px="4" py="3" pz="0"/>
+          <tileInstance tileId="t19" px="5" py="3" pz="0"/>
+          <tileInstance tileId="t19" px="6" py="3" pz="0"/>
+          <tileInstance tileId="t19" px="7" py="3" pz="0"/>
+          <tileInstance tileId="t19" px="0" py="4" pz="0"/>
+          <tileInstance tileId="t19" px="1" py="4" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="4" pz="0"/>
+          <tileInstance tileId="t19" px="3" py="4" pz="0"/>
+          <tileInstance tileId="t19" px="4" py="4" pz="0"/>
+          <tileInstance tileId="t19" px="5" py="4" pz="0"/>
+          <tileInstance tileId="t19" px="6" py="4" pz="0"/>
+          <tileInstance tileId="t19" px="7" py="4" pz="0"/>
+          <tileInstance tileId="t19" px="0" py="5" pz="0"/>
+          <tileInstance tileId="t19" px="1" py="5" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="5" pz="0"/>
+          <tileInstance tileId="t19" px="3" py="5" pz="0"/>
+          <tileInstance tileId="t19" px="4" py="5" pz="0"/>
+          <tileInstance tileId="t19" px="5" py="5" pz="0"/>
+          <tileInstance tileId="t19" px="6" py="5" pz="0"/>
+          <tileInstance tileId="t19" px="7" py="5" pz="0"/>
+          <tileInstance tileId="t6" px="0" py="6" pz="0"/>
+          <tileInstance tileId="t19" px="1" py="6" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="6" pz="0"/>
+          <tileInstance tileId="t19" px="3" py="6" pz="0"/>
+          <tileInstance tileId="t19" px="4" py="6" pz="0"/>
+          <tileInstance tileId="t19" px="5" py="6" pz="0"/>
+          <tileInstance tileId="t19" px="6" py="6" pz="0"/>
+          <tileInstance tileId="t19" px="7" py="6" pz="0"/>
+          <tileInstance tileId="t19" px="0" py="7" pz="0"/>
+          <tileInstance tileId="t19" px="1" py="7" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="7" pz="0"/>
+          <tileInstance tileId="t9" px="3" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="7" pz="0"/>
+          <tileInstance tileId="t19" px="0" py="8" pz="0"/>
+          <tileInstance tileId="t19" px="1" py="8" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="8" pz="0"/>
+          <tileInstance tileId="t19" px="3" py="8" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="8" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="8" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="8" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="8" pz="0"/>
+          <tileInstance tileId="t19" px="0" py="9" pz="0"/>
+          <tileInstance tileId="t19" px="1" py="9" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="9" pz="0"/>
+          <tileInstance tileId="t19" px="3" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="9" pz="0"/>
+          <tileInstance tileId="t8" px="0" py="10" pz="0"/>
+          <tileInstance tileId="t19" px="1" py="10" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="10" pz="0"/>
+          <tileInstance tileId="t19" px="3" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="10" pz="0"/>
+        </tileInstances>
+      </superTile>
+      <superTile id="T2" width="4" height="1" title="Fence N-S" keywords="building">
+        <tileInstances>
+          <tileInstance tileId="t2" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t19" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="0" pz="0"/>
+          <tileInstance tileId="t19" px="3" py="0" pz="0"/>
+        </tileInstances>
+      </superTile>
+    </superTiles>
+    <backgrounds>
+      <background id="b1" columns="2" rows="2" colWidth="540" rowHeight="270" cache="true" title="Clouds" keywords="sky">
+        <parts>
+          <part col="0" row="0" className="ForegroundClouds"/>
+          <part col="1" row="0" className="ForegroundClouds"/>
+          <part col="0" row="1" className="ForegroundClouds"/>
+          <part col="1" row="1" className="ForegroundClouds"/>
+        </parts>
+      </background>
+      <background id="b0" columns="2" rows="2" colWidth="640" rowHeight="320" title="Meadow" keywords="terrain,grass">
+        <parts>
+          <part col="0" row="0" className="MeadowBackground"/>
+          <part col="1" row="0" className="MeadowBackground"/>
+          <part col="0" row="1" className="MeadowBackground"/>
+          <part col="1" row="1" className="MeadowBackground"/>
+        </parts>
+      </background>
+      <background id="b2" columns="1" rows="1" colWidth="640" rowHeight="480" title="Ranch inside" keywords="building">
+        <parts>
+          <part col="0" row="0" className="RanchInside"/>
+        </parts>
+      </background>
+    </backgrounds>
+    <maps>
+      <map id="m1" width="8" height="11" bgId="b2" bgHOffset="-33" bgVOffset="-169" title="Ranch (inside)">
+        <tileInstances>
+          <tileInstance tileId="t18" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="0" pz="0"/>
+          <tileInstance tileId="t0" px="3" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="3" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="2" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="2" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="2" pz="0"/>
+          <tileInstance tileId="t18" px="3" py="2" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="2" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="2" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="2" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="2" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="3" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="3" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="3" pz="0"/>
+          <tileInstance tileId="t18" px="3" py="3" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="3" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="3" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="3" pz="0"/>
+          <tileInstance tileId="t13" px="7" py="3" pz="0" isAccessPoint="1"/>
+          <tileInstance tileId="t18" px="0" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="3" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="3" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="3" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="3" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="8" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="8" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="8" pz="0"/>
+          <tileInstance tileId="t14" px="3" py="8" pz="0" isAccessPoint="1"/>
+          <tileInstance tileId="t18" px="0" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="3" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="3" py="10" pz="0"/>
+        </tileInstances>
+      </map>
+      <map id="m2" width="15" height="15" bgId="b0" bgHOffset="-140" bgVOffset="-100" fgId="b1" title="Ranch (outside)">
+        <groups>
+          <group id="g2" title="Fence N-S"/>
+          <group id="g4" title="Fence W-E"/>
+          <group id="g1" title="Ranch"/>
+          <group id="g3" title="Shelter"/>
+          <group id="g0" title="Fence N-S"/>
+        </groups>
+        <tileInstances>
+          <tileInstance tileId="t18" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="3" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="8" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="9" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="10" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="12" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="13" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="14" py="0" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="3" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="8" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="9" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="10" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="12" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="13" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="14" py="1" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="2" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="2" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="2" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="3" py="2" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="4" py="2" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="5" py="2" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="6" py="2" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="7" py="2" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="8" py="2" pz="0" group="g1"/>
+          <tileInstance tileId="t7" px="9" py="2" pz="0" group="g1"/>
+          <tileInstance tileId="t2" px="10" py="2" pz="0" group="g2"/>
+          <tileInstance tileId="t19" px="11" py="2" pz="0" group="g2"/>
+          <tileInstance tileId="t19" px="12" py="2" pz="0" group="g2"/>
+          <tileInstance tileId="t19" px="13" py="2" pz="0" group="g2"/>
+          <tileInstance tileId="t18" px="14" py="2" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="3" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="3" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="3" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="3" py="3" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="4" py="3" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="5" py="3" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="6" py="3" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="7" py="3" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="8" py="3" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="9" py="3" pz="0" group="g1"/>
+          <tileInstance tileId="t18" px="10" py="3" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="3" pz="0"/>
+          <tileInstance tileId="t17" px="12" py="3" pz="0"/>
+          <tileInstance tileId="t18" px="13" py="3" pz="0"/>
+          <tileInstance tileId="t18" px="14" py="3" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="4" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="4" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="3" py="4" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="4" py="4" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="5" py="4" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="6" py="4" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="7" py="4" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="8" py="4" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="9" py="4" pz="0" group="g1"/>
+          <tileInstance tileId="t0" px="10" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="12" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="13" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="14" py="4" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="5" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="5" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="3" py="5" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="4" py="5" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="5" py="5" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="6" py="5" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="7" py="5" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="8" py="5" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="9" py="5" pz="0" group="g1"/>
+          <tileInstance tileId="t11" px="10" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="12" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="13" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="14" py="5" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="6" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="6" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="3" py="6" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="4" py="6" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="5" py="6" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="6" py="6" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="7" py="6" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="8" py="6" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="9" py="6" pz="0" group="g1"/>
+          <tileInstance tileId="t18" px="10" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="12" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="13" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="14" py="6" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="7" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="7" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="3" py="7" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="4" py="7" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="5" py="7" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="6" py="7" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="7" py="7" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="8" py="7" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="9" py="7" pz="0" group="g1"/>
+          <tileInstance tileId="t18" px="10" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="7" pz="0" isAccessPoint="1"/>
+          <tileInstance tileId="t18" px="12" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="13" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="14" py="7" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="8" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="8" pz="0"/>
+          <tileInstance tileId="t6" px="2" py="8" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="3" py="8" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="4" py="8" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="5" py="8" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="6" py="8" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="7" py="8" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="8" py="8" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="9" py="8" pz="0" group="g1"/>
+          <tileInstance tileId="t18" px="10" py="8" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="8" pz="0"/>
+          <tileInstance tileId="t18" px="12" py="8" pz="0"/>
+          <tileInstance tileId="t18" px="13" py="8" pz="0"/>
+          <tileInstance tileId="t18" px="14" py="8" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="9" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="9" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="3" py="9" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="4" py="9" pz="0" group="g1"/>
+          <tileInstance tileId="t9" px="5" py="9" pz="0" group="g1"/>
+          <tileInstance tileId="t1" px="6" py="9" pz="0" group="g3"/>
+          <tileInstance tileId="t18" px="7" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="8" py="9" pz="0"/>
+          <tileInstance tileId="t16" px="9" py="9" pz="0" group="g3"/>
+          <tileInstance tileId="t18" px="10" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="12" py="9" pz="0"/>
+          <tileInstance tileId="t5" px="13" py="9" pz="0" group="g4"/>
+          <tileInstance tileId="t18" px="14" py="9" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="10" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="10" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="3" py="10" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="4" py="10" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="5" py="10" pz="0" group="g1"/>
+          <tileInstance tileId="t12" px="6" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="8" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="9" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="10" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="12" py="10" pz="0"/>
+          <tileInstance tileId="t4" px="13" py="10" pz="0" group="g4"/>
+          <tileInstance tileId="t18" px="14" py="10" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="11" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="11" pz="0"/>
+          <tileInstance tileId="t19" px="2" py="11" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="3" py="11" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="4" py="11" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="5" py="11" pz="0" group="g1"/>
+          <tileInstance tileId="t18" px="6" py="11" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="11" pz="0"/>
+          <tileInstance tileId="t18" px="8" py="11" pz="0" isAccessPoint="1"/>
+          <tileInstance tileId="t18" px="9" py="11" pz="0"/>
+          <tileInstance tileId="t18" px="10" py="11" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="11" pz="0"/>
+          <tileInstance tileId="t18" px="12" py="11" pz="0"/>
+          <tileInstance tileId="t3" px="13" py="11" pz="0" group="g4"/>
+          <tileInstance tileId="t18" px="14" py="11" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="12" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="12" pz="0"/>
+          <tileInstance tileId="t8" px="2" py="12" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="3" py="12" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="4" py="12" pz="0" group="g1"/>
+          <tileInstance tileId="t19" px="5" py="12" pz="0" group="g1"/>
+          <tileInstance tileId="t15" px="6" py="12" pz="0" group="g3"/>
+          <tileInstance tileId="t18" px="7" py="12" pz="0"/>
+          <tileInstance tileId="t18" px="8" py="12" pz="0"/>
+          <tileInstance tileId="t18" px="9" py="12" pz="0"/>
+          <tileInstance tileId="t2" px="10" py="12" pz="0" group="g0"/>
+          <tileInstance tileId="t19" px="11" py="12" pz="0" group="g0"/>
+          <tileInstance tileId="t19" px="12" py="12" pz="0" group="g0"/>
+          <tileInstance tileId="t19" px="13" py="12" pz="0" group="g0"/>
+          <tileInstance tileId="t18" px="14" py="12" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="13" pz="0"/>
+          <tileInstance tileId="t10" px="3" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="8" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="9" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="10" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="12" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="13" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="14" py="13" pz="0"/>
+          <tileInstance tileId="t18" px="0" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="1" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="2" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="3" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="4" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="5" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="6" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="7" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="8" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="9" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="10" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="11" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="12" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="13" py="14" pz="0"/>
+          <tileInstance tileId="t18" px="14" py="14" pz="0"/>
+        </tileInstances>
+      </map>
+    </maps>
+  </library>
+</OpenSpaceEditor>

@@ -1,30 +1,82 @@
-# Server files
-This repo contains the required files to host a game server for the game remake of SHSO. For the game client, go to [SHSUnderground/shso-unity-project](https://github.com/SHSUnderground/shso-unity-project).
+# SHSO Server
+A repo to easily create a private server to play SHSO using Docker and Docker Compose.
+
 # Contact
+
 ## Support
-For any help with any in-game issues go to the official server below:  
-<a href="https://discord.gg/cVSYeVa2Gg"><img src="https://discordapp.com/api/guilds/735244842921099427/widget.png?style=banner3" alt="Support Server"></a>
+
+For any help with any in-game issues go to the official server below:
+`<a href="https://discord.gg/cVSYeVa2Gg"><img src="https://discordapp.com/api/guilds/735244842921099427/widget.png?style=banner3" alt="Support Server">``</a>`
+
 ## Dev Discussion
-Go to `#development-only` in the community server below:  
-<a href="https://discord.gg/PH54Utcm5Y"><img src="https://discordapp.com/api/guilds/895805639979331635/widget.png?style=banner3" alt="Community Server"></a>
-# Rough instructions:
-- Download Smartfox Server Pro 1.6.6 (commonly shortened to SFS Pro) from its official website.
-- Extract it twice to two folders called `sf-notification` and `sf-game` (make sure it doesn't have an SFS_1.6.6 folder in it, extract the contents of SFS_1.6.6 folder into these two folders) .
-- Copy the contents `sf-notification` and `sf-game` files into the extracted files respectively. Replace if necessary.
-- Set up a MySQL server via any method, XAMPP can help simplify on Windows.
-- Create a database called `shso`.
-- Use the provided `.sql` file for a sample DB with username: `User` and password: `password` (simply excute it in your MySQL server).
-- Edit the `config.xml` file in both folders and provide the DB's username and password, for XAMPP defaults are username: `root` and password is blank, don't put anything for the password, leave it empty.
-- Edit all `sf-game/` and `sf-notification/` paths across all scripts to point to the absolute path (like, `/home/user/sf-game/` for Linux and `D:\folder\sf-game\` for Windows.
-- Start the server by running a terminal window in both folders and type `.\start.sh` (for Linux, for Windows it is `.\start.bat`, don't forget to `cd` to the folder in both cases).
-Don't forget to edit the IP and set it to `127.0.0.1` in the game directory's `AssetBundles\Configuration\server.xml`
-# Contributing
-Make a fork and submit a PR with your changes.
-This requires understanding in ActionScript (similar to JavaScript) and Python to understand the server code, but you will also need to check the game client repo [SHSUnderground/shso-unity-project](https://github.com/SHSUnderground/shso-unity-project) to understand what responses are missing and how to format them, so both Unity and C# understanding is required.
+
+Go to `#development-only` in the community server below:
+`<a href="https://discord.gg/PH54Utcm5Y"><img src="https://discordapp.com/api/guilds/895805639979331635/widget.png?style=banner3" alt="Community Server">``</a>`
+
+# Installation
+
+## Important Notes
+- After staring the server, the initialization might take a few minutes.
+- Make sure nothing already uses these ports (close anything using them):
+  - 80
+  - 8080
+  - 9339
+  - 9389
+
+## Easy way:
+
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and restart.
+- Download the repo (Code button -> Download ZIP) or from [here](https://github.com/SHSUnderground/shso-server-docker/archive/refs/heads/master.zip).
+- Extract it into a folder somewhere easily accessible.
+- Extract `shso-server-master` into `shso-server-docker-master`.
+- Double click on `start`/`start.bat` whenever you want to start it, to close simply close the window.
+- To be able to delete the server files from Docker, double click on `unload`/`unload.bat` and then:
+  - Open Docker Desktop from the start menu.
+  - Go to the Volumes tab.
+  - Select all (or just anything that starts with `shso` if you already used Docker before, otherwise select all).
+  - Delete everything.
+  - Repeat for the Images tab.
+
+## Proper way:
+
+### Setup
+
+Clone the repo, change into the newly created directory, and then set up via Docker Compose:
+
+```bash
+cd shso-server-docker
+docker compose up
+```
+
+### Complete shutdown and remove the containers
+
+```bash
+docker compose down
+```
+
+### Starting it again
+
+Open a terminal in the same directory `shso-server-docker` then run (safe to close the terminal window, the server will run the background):
+
+```bash
+docker compose up -d
+```
+
+# Game
+
+- Remember to download the public game build from the official server (linked above) or build your private build.
+- Edit the IP/host (replace all instances of `game.retrosquadonline.com` but don't replace the ports) and set it to `localhost` in the game directory's `AssetBundles\Configuration\server.xml`.
+- Log in with username: `User` and password: `password`.
+- For heroes at level 40, log in with username: `Super_User` and password: `password`.
+
+
+# Disclaimer
+We claim no rights to any of the trademarks, all trademarks are owned by their respective owners.
+
 # Contributors:
 #### Developers:
-* CrabFu (Former project lead).
-* FireAndIce (Former project lead).
+* CrabFu (Former project leader).
+* FireAndIce (Former project leader).
 * Omar (Ultimate Squad).
 * Undisclosed contributor.
 * DarkRedTitan (Mostafa Abdelbrr) (Current project leader).
@@ -35,4 +87,4 @@ This requires understanding in ActionScript (similar to JavaScript) and Python t
 * Remy.
 * Strad.
 
-Sincere thanks to all of the remakes of this project, as well as the community!
+Sincere thanks to all of the remakes of this game, as well as the community!  

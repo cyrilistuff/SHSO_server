@@ -1,0 +1,7 @@
+<SmartFoxClient>
+    <ip>127.0.0.1</ip>
+    <port>9339</port>
+    <zone>SmartMessengerAV</zone>
+    <debug>true</debug>
+    <smartConnect>false</smartConnect>
+</SmartFoxClient>

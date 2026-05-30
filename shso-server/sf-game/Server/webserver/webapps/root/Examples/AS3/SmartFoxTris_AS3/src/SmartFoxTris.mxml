@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	SmartFoxServer Actionscript 3.0 example application:
+	
+	SmartFoxTris
+	Version 1.0.0
+-->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:ui="com.gskinner.ui.*"
+				layout="absolute"
+				backgroundGradientColors="[#990000, #ff9900]"
+				creationComplete="initApp()"
+				frameRate="31" xmlns:ns1="com.gskinner.ui.*">
+	
+	<mx:Script source="smartFoxTris.as" />
+	
+	<mx:ViewStack id="viewstack" left="10" right="10" top="10" bottom="10" selectedIndex="0">
+	
+		<!-- Connection View -->
+		<mx:Canvas width="100%" height="100%" id="view_connecting">
+			<mx:Panel width="362" height="260" layout="absolute" horizontalCenter="0.5" verticalCenter="-7" title="::.. Connection ..::" color="#ffffff">
+				<mx:Label y="115" text="Connecting to server ..." horizontalCenter="0.5" width="321" textAlign="center" height="21" fontWeight="bold" fontSize="14" color="#ff0000" id="lb_connStatus"/>
+				<mx:Image y="23" source="images/foxey.png" horizontalCenter="0"/>
+				<mx:ProgressBar y="154" indeterminate="true" enabled="true" horizontalCenter="0" barColor="#ff3300"/>
+			</mx:Panel>
+		</mx:Canvas>
+		
+		<!-- Login View -->
+		<mx:Canvas width="100%" height="100%" id="view_login">
+			<mx:Panel width="362" height="260" layout="absolute" horizontalCenter="0.5" verticalCenter="0.5" title="Login" color="#ffffff">
+				<mx:TextInput x="69.5" y="127" width="203" color="#000000" id="tf_name" textAlign="center" themeColor="#ffcc00"/>
+				<mx:Label y="100" text="Type your user name:" textAlign="center" color="#800000" fontWeight="bold" horizontalCenter="1" width="236"/>
+				<mx:Label x="10" y="197" textAlign="center" color="#ff0000" fontWeight="bold" width="322" id="lb_errorMsg"/>
+				<mx:Button x="124.5" y="169" label="Enter" width="93" color="#333333" id="bt_enter" click="bt_login_click()" themeColor="#ffcc00"/>
+				<mx:Image x="138" y="18" source="images/foxey.png"/>
+			</mx:Panel>
+		</mx:Canvas>
+		
+		<!-- Chat View -->
+		<mx:Canvas width="100%" height="100%" id="view_chat" creationComplete="populateRoomList()">
+			<mx:Panel width="695" height="537" layout="absolute" horizontalCenter="0" verticalCenter="0.5" title="::.. SmartFoxChat ..::" backgroundColor="#f0f0f0">
+				<mx:TextArea x="10" y="37" height="382" width="458" id="ta_chat" fontSize="11" themeColor="#ffcc00"/>
+				<mx:List x="476" y="246" width="189" height="172" id="roomList" rollOverColor="#ffff66" selectionColor="#FFCC00" change="roomList_change()" themeColor="#ffcc00"></mx:List>
+				<mx:List x="476" y="37" width="189" height="182" rollOverColor="#ffff66"  selectionColor="#FFCC00" id="userList" change="userList_change()" themeColor="#ffcc00"></mx:List>
+				<mx:Label x="476" y="227" text=":: GAMES LIST"/>
+				<mx:Label x="10" y="18" text=":: CHAT HISTORY"/>
+				<mx:Label x="476" y="18" text=":: USERS LIST"/>
+				<mx:TextInput x="10" y="428" width="289" id="tf_pubmsg" themeColor="#ffcc00"/>
+				<mx:Button x="307" y="427" label="Send &gt;&gt;" width="75" click="bt_send_click(tf_pubmsg)" themeColor="#ffcc00"/>
+				<mx:Button x="390" y="427" label="LOG OUT" width="78" color="#ff0000" click="bt_logout_click()" themeColor="#ffcc00"/>
+				<mx:Button x="560" y="426" label="New game" width="104"  click="bt_create_click()" themeColor="#ffcc00"/>
+				<mx:HRule y="457" width="655" left="10" height="14"/>
+				<mx:Label text="(c) 2006 gotoAndPlay() -- www.gotoandplay.it -- www.smartfoxserver.com" width="655" textAlign="center" color="#333333" y="472"/>
+			</mx:Panel>
+		</mx:Canvas>
+		
+		<!-- Game View -->
+		<mx:Canvas width="100%" height="100%" id="view_game" creationComplete="initGame()">
+			<mx:Panel width="695" height="537" layout="absolute" horizontalCenter="0" verticalCenter="0.5" title="::.. SmartFoxTris ..::" backgroundColor="#f0f0f0">
+				<mx:TextArea x="518" y="37" height="339" width="147" id="ta_chat1" fontSize="11" themeColor="#ffcc00"/>
+				<mx:Label x="518" y="18" text=":: QUICK CHAT"/>
+				<mx:TextInput x="518" y="384" width="147" id="tf_pubmsg1" themeColor="#ffcc00"/>
+				<mx:Button x="518" y="414" label="Send &gt;&gt;" width="68" click="bt_send_click(tf_pubmsg1)" themeColor="#ffcc00"/>
+				<mx:HRule y="457" width="655" left="10" height="14"/>
+				<mx:Label text="(c) 2006 gotoAndPlay() -- www.gotoandplay.it -- www.smartfoxserver.com" width="655" textAlign="center" color="#333333" y="472"/>
+				<mx:Canvas x="10" y="37" width="500" height="400" id="gameContainer">
+				</mx:Canvas>
+				<mx:Button x="596" y="414" label="Exit" width="68" color="#ff0000" click="bt_exitGame_click()" themeColor="#ffcc00"/>
+			</mx:Panel>
+		</mx:Canvas>
+		
+		<!-- Logout View -->
+		<mx:Canvas width="100%" height="100%" id="view_logout">
+			<mx:Panel width="406" height="200" layout="absolute" horizontalCenter="0.5" verticalCenter="-7" title="::.. Logged out ..::" color="#ffffff">
+				<mx:Button y="88" label="Return to login screen" width="198" horizontalCenter="0" color="#333333" click="backToLoginScreen()" themeColor="#ffcc00"/>
+				<mx:Label y="45" text="Connection was lost" horizontalCenter="0" width="273" textAlign="center" height="29" fontWeight="bold" fontSize="18" color="#ff0000"/>
+			</mx:Panel>
+		</mx:Canvas>
+		
+	</mx:ViewStack>
+</mx:Application>

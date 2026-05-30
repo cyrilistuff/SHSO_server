@@ -1,0 +1,7 @@
+<Zone name="openspace" uCountUpdate="true" maxUsers="200" customLogin="false">
+	<Rooms>
+		<Room name="Ranch (inside)" maxUsers="50" isPrivate="false" isTemp="false" uCountUpdate="true" />
+		<Room name="Ranch (outside)" maxUsers="50" isPrivate="false" isTemp="false" uCountUpdate="true" />
+		<Room name="Slopes area" maxUsers="50" isPrivate="false" isTemp="false" uCountUpdate="true" />
+	</Rooms>
+</Zone>

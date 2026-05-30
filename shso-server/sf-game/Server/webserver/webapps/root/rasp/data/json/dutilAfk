@@ -1,0 +1,8 @@
+<response>
+  <status>200</status>
+  <headers>
+    <Content-Type>application/json; charset=UTF-8</Content-Type>
+  </headers>
+  <body>300</body>
+</response>
+

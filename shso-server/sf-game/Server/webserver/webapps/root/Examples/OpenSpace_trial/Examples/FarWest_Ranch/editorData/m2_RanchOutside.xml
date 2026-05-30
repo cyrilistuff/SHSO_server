@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated with OpenSpace Editor [Wed Oct 29 17:39:11 GMT+0100 2008] -->
+<IsoMapDefinition>
+  
+  <TileSet>
+    <!-- Default placeholder for empty tile -->
+    <tile id=".."/>
+    <!-- Empty tile (walkable) -->
+    <tile id="t18" walkable="1"/>
+    <!-- Empty tile (non-walkable) -->
+    <tile id="t19"/>
+    <!-- Ranch main (b) -->
+    <tile id="t7">
+      <skins>
+        <skin className="RanchMain2" cache="1" objectId="ranchMain2"/>
+      </skins>
+    </tile>
+    <!-- Fence N-S -->
+    <tile id="t2">
+      <skins>
+        <skin className="Fence1" cache="1"/>
+      </skins>
+    </tile>
+    <!-- Wheel -->
+    <tile id="t17" walkable="1">
+      <skins>
+        <skin className="Wheel" cache="1"/>
+      </skins>
+    </tile>
+    <!-- Barrel -->
+    <tile id="t0" topElevation="34">
+      <skins>
+        <skin className="Barrel" hOffset="3" vOffset="34" cache="1"/>
+      </skins>
+    </tile>
+    <!-- Sensor 1 (outdoor, main door) -->
+    <tile id="t11" walkable="1" customParams="int|ranchInside|7|3|0" linkedObjectId="ranchMain2">
+      <skins>
+        <skin className="Sensor" cache="1" customParams="0"/>
+      </skins>
+    </tile>
+    <!-- Ranch main (a) -->
+    <tile id="t6">
+      <skins>
+        <skin className="RanchMain1" cache="1" objectId="ranchMain1"/>
+      </skins>
+    </tile>
+    <!-- Ranch wing (b) -->
+    <tile id="t9">
+      <skins>
+        <skin className="RanchWing2" cache="1" objectId="ranchWing2"/>
+      </skins>
+    </tile>
+    <!-- Duckboard  -->
+    <tile id="t1" walkable="1">
+      <skins>
+        <skin className="Duckboard" vOffset="4" cache="1"/>
+      </skins>
+    </tile>
+    <!-- Shelter (b) -->
+    <tile id="t16" walkable="1" skinOnTop="1">
+      <skins>
+        <skin className="Shelter2" vOffset="-1" cache="1"/>
+      </skins>
+    </tile>
+    <!-- Fence W-E (c) -->
+    <tile id="t5">
+      <skins>
+        <skin className="Fence2c" cache="1"/>
+      </skins>
+    </tile>
+    <!-- Sensor 2 (outdoor, wing door) -->
+    <tile id="t12" walkable="1" customParams="int|ranchInside|3|8|0" linkedObjectId="ranchWing2">
+      <skins>
+        <skin className="Sensor" cache="1" customParams="0"/>
+      </skins>
+    </tile>
+    <!-- Fence W-E (b) -->
+    <tile id="t4">
+      <skins>
+        <skin className="Fence2b" cache="1"/>
+      </skins>
+    </tile>
+    <!-- Fence W-E (a) -->
+    <tile id="t3">
+      <skins>
+        <skin className="Fence2a" hOffset="1" vOffset="-1" cache="1"/>
+      </skins>
+    </tile>
+    <!-- Ranch wing (a) -->
+    <tile id="t8">
+      <skins>
+        <skin className="RanchWing1" cache="1" objectId="ranchWing1"/>
+      </skins>
+    </tile>
+    <!-- Shelter (a) -->
+    <tile id="t15" walkable="1" skinOnTop="1">
+      <skins>
+        <skin className="Shelter1" cache="1"/>
+      </skins>
+    </tile>
+    <!-- Sacks -->
+    <tile id="t10">
+      <skins>
+        <skin className="Sacks" cache="1"/>
+      </skins>
+    </tile>
+  </TileSet>
+  
+  <Backgrounds>
+    <!-- Default placeholder for empty background part -->
+    <background id=".."/>
+    <!-- Background parts -->
+    <background id="MeadowBackground" className="MeadowBackground" cache="0"/>
+  </Backgrounds>
+  
+  <Foregrounds>
+    <!-- Default placeholder for empty foreground part -->
+    <foreground id=".."/>
+    <!-- Foreground parts -->
+    <foreground id="ForegroundClouds" className="ForegroundClouds" cache="1"/>
+  </Foregrounds>
+  
+  <Map id="root" width="15" height="15">
+    <backgrounds width="640" height="320" rows="2" cols="2" xOffset="-140" yOffset="-100">
+      <backgroundRow>MeadowBackground, MeadowBackground</backgroundRow>
+      <backgroundRow>MeadowBackground, MeadowBackground</backgroundRow>
+    </backgrounds>
+    <foregrounds width="540" height="270" rows="2" cols="2">
+      <foregroundRow>ForegroundClouds, ForegroundClouds</foregroundRow>
+      <foregroundRow>ForegroundClouds, ForegroundClouds</foregroundRow>
+    </foregrounds>
+    <accessPoints>
+      <accessPoint px="11" py="7" pz="0"/>
+      <accessPoint px="8" py="11" pz="0"/>
+    </accessPoints>
+    <levels>
+      <level id="0">
+        <levelRow>t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t19, t19, t19, t19, t19, t19, t19, t7, t2, t19, t19, t19, t18</levelRow>
+        <levelRow>t18, t18, t19, t19, t19, t19, t19, t19, t19, t19, t18, t18, t17, t18, t18</levelRow>
+        <levelRow>t18, t18, t19, t19, t19, t19, t19, t19, t19, t19, t0, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t19, t19, t19, t19, t19, t19, t19, t19, t11, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t19, t19, t19, t19, t19, t19, t19, t19, t18, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t19, t19, t19, t19, t19, t19, t19, t19, t18, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t6, t19, t19, t19, t19, t19, t19, t19, t18, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t19, t19, t19, t9, t1, t18, t18, t16, t18, t18, t18, t5, t18</levelRow>
+        <levelRow>t18, t18, t19, t19, t19, t19, t12, t18, t18, t18, t18, t18, t18, t4, t18</levelRow>
+        <levelRow>t18, t18, t19, t19, t19, t19, t18, t18, t18, t18, t18, t18, t18, t3, t18</levelRow>
+        <levelRow>t18, t18, t8, t19, t19, t19, t15, t18, t18, t18, t2, t19, t19, t19, t18</levelRow>
+        <levelRow>t18, t18, t18, t10, .., t18, t18, t18, t18, t18, t18, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18, t18</levelRow>
+      </level>
+    </levels>
+  </Map>
+  
+</IsoMapDefinition>

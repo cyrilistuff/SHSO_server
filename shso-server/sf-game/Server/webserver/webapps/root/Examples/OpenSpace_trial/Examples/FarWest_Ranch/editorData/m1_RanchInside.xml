@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated with OpenSpace Editor [Wed Oct 29 17:39:11 GMT+0100 2008] -->
+<IsoMapDefinition>
+  
+  <TileSet>
+    <!-- Default placeholder for empty tile -->
+    <tile id=".."/>
+    <!-- Empty tile (walkable) -->
+    <tile id="t18" walkable="1"/>
+    <!-- Barrel -->
+    <tile id="t0" topElevation="34">
+      <skins>
+        <skin className="Barrel" hOffset="3" vOffset="34" cache="1"/>
+      </skins>
+    </tile>
+    <!-- Sensor 3 (indoor, main door) -->
+    <tile id="t13" walkable="1" customParams="nav|ranchOutside|10|5|4">
+      <skins>
+        <skin className="Sensor" cache="1" customParams="4"/>
+      </skins>
+    </tile>
+    <!-- Sensor 4 (indoor, wing door) -->
+    <tile id="t14" walkable="1" customParams="nav|ranchOutside|6|10|4">
+      <skins>
+        <skin className="Sensor" cache="1" customParams="4"/>
+      </skins>
+    </tile>
+  </TileSet>
+  
+  <Backgrounds>
+    <!-- Default placeholder for empty background part -->
+    <background id=".."/>
+    <!-- Background parts -->
+    <background id="RanchInside" className="RanchInside" cache="0"/>
+  </Backgrounds>
+  
+  <Map id="root" width="8" height="11">
+    <backgrounds width="640" height="480" rows="1" cols="1" xOffset="-33" yOffset="-169">
+      <backgroundRow>RanchInside</backgroundRow>
+    </backgrounds>
+    <accessPoints>
+      <accessPoint px="7" py="3" pz="0"/>
+      <accessPoint px="3" py="8" pz="0"/>
+    </accessPoints>
+    <levels>
+      <level id="0">
+        <levelRow>t18, t18, t18, t0, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t18, t18, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t18, t18, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t18, t18, t18, t18, t18, t13</levelRow>
+        <levelRow>t18, t18, t18, t18, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t18, t18, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t18, t18, t18, t18, t18, t18</levelRow>
+        <levelRow>t18, t18, t18, t18, .., .., .., ..</levelRow>
+        <levelRow>t18, t18, t18, t14, .., .., .., ..</levelRow>
+        <levelRow>t18, t18, t18, t18, .., .., .., ..</levelRow>
+        <levelRow>t18, t18, t18, t18, .., .., .., ..</levelRow>
+      </level>
+    </levels>
+  </Map>
+  
+</IsoMapDefinition>

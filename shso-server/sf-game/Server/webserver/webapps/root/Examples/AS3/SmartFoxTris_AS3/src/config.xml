@@ -1,0 +1,8 @@
+<SmartFoxTrisConfig>
+	<ip>127.0.0.1</ip>
+	<port>9339</port>
+	<zone>sftris</zone>
+	<defaultRoom>The Entrance</defaultRoom>
+	<xtName>tris</xtName>
+	<xtScript>it.gotoandplay.extensions.examples.SFSTris2</xtScript>
+</SmartFoxTrisConfig>

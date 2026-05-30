@@ -1,0 +1,19 @@
+<!--
+	SmartMessenger config file
+	Instant Messagges with SmartFoxServer - Example app -
+	
+	(c) 2005-2007 gotoAndPlay()
+	www.smartfoxserver.com
+	www.gotoandplay.it
+	
+	addr: server address
+	port: server tcp/ip port
+	zone: name of the server zone
+-->
+
+<messenger>
+	<addr>127.0.0.1</addr>
+	<port>9339</port>
+	<zone>messenger</zone>
+	<xtName>smsg</xtName>
+</messenger>

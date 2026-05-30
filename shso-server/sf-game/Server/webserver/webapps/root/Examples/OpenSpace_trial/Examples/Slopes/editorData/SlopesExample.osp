@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OpenSpaceEditor>
+  <project>
+    <title>Slopes example</title>
+    <skinsSwfLibrary>../libraries/TestSkinsLibrary.swf</skinsSwfLibrary>
+    <backgroundsSwfLibrary>../libraries/TestBackgroundsLibrary.swf</backgroundsSwfLibrary>
+    <avatarScale>100</avatarScale>
+    <tileSize>60</tileSize>
+    <tileRatio>0.5</tileRatio>
+    <showTileElevation>1</showTileElevation>
+    <customParamsSeparator>|</customParamsSeparator>
+  </project>
+  <library>
+    <skins>
+      <skin id="s7" className="SkinStairW" vOffset="16" title="SkinStairW"/>
+      <skin id="s15" className="SkinShadow" hOffset="-2" vOffset="-2" title="SkinShadow2"/>
+      <skin id="s6" className="SkinStairS" vOffset="15" title="SkinStairS"/>
+      <skin id="s4" className="SkinStairE" title="SkinStairE"/>
+      <skin id="s5" className="SkinStairN" title="SkinStairN"/>
+      <skin id="s10" className="SkinWall1" title="SkinWall1"/>
+      <skin id="s9" className="SkinWall" title="SkinWall"/>
+      <skin id="s12" className="TunnelFront" hOffset="-77" vOffset="-154" title="TunnelFront"/>
+      <skin id="s14" className="SkinShadow" hOffset="-2" vOffset="92" title="SkinShadow1"/>
+      <skin id="s2" className="SkinMoss" title="SkinMoss"/>
+      <skin id="s3" className="SkinShadow" hOffset="-2" vOffset="60" title="SkinShadow"/>
+      <skin id="s13" className="TunnelRear" hOffset="-19" vOffset="-73" title="TunnelRear"/>
+      <skin id="s8" className="SkinTree" hOffset="-10" vOffset="-50" title="SkinTree"/>
+      <skin id="s11" className="SkinWall2" title="SkinWall2"/>
+    </skins>
+    <tiles>
+      <tile id="t9" allowDrop="0" title="Tunnel (rear)" keywords="building,wall,stone">
+        <skinInstances>
+          <skinInstance skinId="s13"/>
+        </skinInstances>
+      </tile>
+      <tile id="t6" topElevation="96" walkable="1" title="Wall 3x (overpass)" keywords="stone">
+        <skinInstances>
+          <skinInstance skinId="s14"/>
+          <skinInstance skinId="s9"/>
+        </skinInstances>
+      </tile>
+      <tile id="t1" topElevation="32" slopeDir="4" walkable="1" allowDrop="0" title="Stair S" keywords="stone">
+        <skinInstances>
+          <skinInstance skinId="s6"/>
+        </skinInstances>
+      </tile>
+      <tile id="t8" allowDrop="0" title="Tunnel (front)" keywords="building,stone,wall,roof">
+        <skinInstances>
+          <skinInstance skinId="s12"/>
+        </skinInstances>
+      </tile>
+      <tile id="t7" allowDrop="0" title="Tree" keywords="plant">
+        <skinInstances>
+          <skinInstance skinId="s8"/>
+        </skinInstances>
+      </tile>
+      <tile id="t14" walkable="1" title="Empty (walkable"/>
+      <tile id="t15" title="Empty (non-walkable)"/>
+      <tile id="t13" topElevation="64" bottomElevation="32" slopeDir="0" walkable="1" allowDrop="0" title="Stair N (overpass)" keywords="stone">
+        <skinInstances>
+          <skinInstance skinId="s3"/>
+          <skinInstance skinId="s5"/>
+        </skinInstances>
+      </tile>
+      <tile id="t11" topElevation="32" slopeDir="6" walkable="1" allowDrop="0" title="Stair W" keywords="stone">
+        <skinInstances>
+          <skinInstance skinId="s7"/>
+        </skinInstances>
+      </tile>
+      <tile id="t4" topElevation="32" walkable="1" title="Wall 1x (moss)" keywords="stone,moss">
+        <skinInstances>
+          <skinInstance skinId="s9"/>
+          <skinInstance skinId="s2"/>
+        </skinInstances>
+      </tile>
+      <tile id="t5" topElevation="96" walkable="1" title="Wall 3x" keywords="stone">
+        <skinInstances>
+          <skinInstance skinId="s11"/>
+        </skinInstances>
+      </tile>
+      <tile id="t0" topElevation="32" walkable="1" title="Wall 1x" keywords="stone">
+        <skinInstances>
+          <skinInstance skinId="s9"/>
+        </skinInstances>
+      </tile>
+      <tile id="t3" topElevation="64" walkable="1" title="Wall 2x" keywords="stone">
+        <skinInstances>
+          <skinInstance skinId="s10"/>
+        </skinInstances>
+      </tile>
+      <tile id="t2" topElevation="64" bottomElevation="32" walkable="1" title="Wall 2x (overpass)" keywords="stone">
+        <skinInstances>
+          <skinInstance skinId="s3"/>
+          <skinInstance skinId="s9"/>
+        </skinInstances>
+      </tile>
+      <tile id="t10" topElevation="32" slopeDir="0" walkable="1" allowDrop="0" title="Stair N" keywords="stone">
+        <skinInstances>
+          <skinInstance skinId="s5"/>
+        </skinInstances>
+      </tile>
+      <tile id="t12" topElevation="32" slopeDir="2" walkable="1" allowDrop="0" title="Stair E" keywords="stone">
+        <skinInstances>
+          <skinInstance skinId="s4"/>
+        </skinInstances>
+      </tile>
+    </tiles>
+    <superTiles>
+      <superTile id="T4" width="1" height="3" title="Structure 4">
+        <tileInstances>
+          <tileInstance tileId="t11" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t0" px="0" py="1" pz="0"/>
+          <tileInstance tileId="t12" px="0" py="2" pz="0"/>
+        </tileInstances>
+      </superTile>
+      <superTile id="T5" width="3" height="2" title="Structure 5">
+        <tileInstances>
+          <tileInstance tileId="t0" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t0" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t0" px="2" py="0" pz="0"/>
+          <tileInstance tileId="t0" px="0" py="1" pz="0"/>
+          <tileInstance tileId="t12" px="1" py="1" pz="0"/>
+          <tileInstance tileId="t0" px="2" py="1" pz="0"/>
+        </tileInstances>
+      </superTile>
+      <superTile id="T8" width="6" height="2" title="Structure 8">
+        <tileInstances>
+          <tileInstance tileId="t3" px="2" py="0" pz="0"/>
+          <tileInstance tileId="t2" px="0" py="1" pz="0"/>
+          <tileInstance tileId="t2" px="1" py="1" pz="0"/>
+          <tileInstance tileId="t3" px="2" py="1" pz="0"/>
+          <tileInstance tileId="t13" px="3" py="1" pz="0"/>
+          <tileInstance tileId="t0" px="4" py="1" pz="0"/>
+          <tileInstance tileId="t10" px="5" py="1" pz="0"/>
+        </tileInstances>
+      </superTile>
+      <superTile id="T2" width="3" height="2" title="Structure 2">
+        <tileInstances>
+          <tileInstance tileId="t3" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t0" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t10" px="2" py="0" pz="0"/>
+          <tileInstance tileId="t4" px="1" py="1" pz="0"/>
+          <tileInstance tileId="t10" px="2" py="1" pz="0"/>
+          <tileInstance tileId="t10" px="1" py="0" pz="1"/>
+        </tileInstances>
+      </superTile>
+      <superTile id="T7" width="4" height="4" title="Structure 7">
+        <tileInstances>
+          <tileInstance tileId="t5" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t0" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t0" px="2" py="0" pz="0"/>
+          <tileInstance tileId="t10" px="3" py="0" pz="0"/>
+          <tileInstance tileId="t3" px="0" py="1" pz="0"/>
+          <tileInstance tileId="t3" px="0" py="2" pz="0"/>
+          <tileInstance tileId="t3" px="0" py="3" pz="0"/>
+          <tileInstance tileId="t13" px="1" py="3" pz="0"/>
+          <tileInstance tileId="t0" px="2" py="3" pz="0"/>
+          <tileInstance tileId="t10" px="3" py="3" pz="0"/>
+          <tileInstance tileId="t2" px="1" py="0" pz="1"/>
+          <tileInstance tileId="t2" px="2" py="0" pz="1"/>
+          <tileInstance tileId="t12" px="0" py="1" pz="1"/>
+        </tileInstances>
+      </superTile>
+      <superTile id="T1" width="4" height="2" title="Structure 1">
+        <tileInstances>
+          <tileInstance tileId="t3" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t2" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t13" px="2" py="0" pz="0"/>
+          <tileInstance tileId="t10" px="3" py="0" pz="0"/>
+          <tileInstance tileId="t0" px="0" py="1" pz="0"/>
+          <tileInstance tileId="t4" px="0" py="1" pz="1"/>
+        </tileInstances>
+      </superTile>
+      <superTile id="T3" width="3" height="1" title="Structure 3">
+        <tileInstances>
+          <tileInstance tileId="t1" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t0" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t10" px="2" py="0" pz="0"/>
+        </tileInstances>
+      </superTile>
+      <superTile id="T6" width="4" height="4" title="Structure 6">
+        <tileInstances>
+          <tileInstance tileId="t11" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t0" px="1" py="1" pz="0"/>
+          <tileInstance tileId="t5" px="0" py="2" pz="0"/>
+          <tileInstance tileId="t0" px="1" py="2" pz="0"/>
+          <tileInstance tileId="t13" px="2" py="2" pz="0"/>
+          <tileInstance tileId="t10" px="3" py="2" pz="0"/>
+          <tileInstance tileId="t2" px="0" py="3" pz="0"/>
+          <tileInstance tileId="t12" px="1" py="3" pz="0"/>
+          <tileInstance tileId="t13" px="1" py="2" pz="1"/>
+          <tileInstance tileId="t0" px="0" py="3" pz="1"/>
+          <tileInstance tileId="t2" px="1" py="3" pz="1"/>
+        </tileInstances>
+      </superTile>
+      <superTile id="T0" width="3" height="3" title="Tunnel" keywords="building,stone">
+        <tileInstances>
+          <tileInstance tileId="t15" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t15" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t9" px="2" py="0" pz="0"/>
+          <tileInstance tileId="t15" px="0" py="2" pz="0"/>
+          <tileInstance tileId="t15" px="1" py="2" pz="0"/>
+          <tileInstance tileId="t8" px="2" py="2" pz="0"/>
+        </tileInstances>
+      </superTile>
+    </superTiles>
+    <backgrounds>
+      <background id="b0" columns="1" rows="1" colWidth="900" rowHeight="450" title="Slopes">
+        <parts>
+          <part col="0" row="0" className="SlopesMapBackground"/>
+        </parts>
+      </background>
+    </backgrounds>
+    <maps>
+      <map id="m0" width="15" height="15" bgId="b0" title="Slopes">
+        <groups>
+          <group id="g2" title="Structure 1"/>
+          <group id="g3" title="Structure 2"/>
+          <group id="g15" title="Structure 8"/>
+          <group id="g1" title="Structure 7"/>
+          <group id="g8" title="Structure 8"/>
+          <group id="g5" title="Structure 3"/>
+          <group id="g9" title="Structure 6"/>
+          <group id="g4" title="Structure 4"/>
+          <group id="g0" title="Tunnel"/>
+        </groups>
+        <tileInstances>
+          <tileInstance tileId="t0" px="0" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="2" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="3" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="5" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="6" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="8" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="9" py="0" pz="0"/>
+          <tileInstance tileId="t5" px="10" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="11" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="0" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="2" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="3" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="5" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="6" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="8" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="9" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="10" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="11" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="1" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="2" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="2" pz="0"/>
+          <tileInstance tileId="t14" px="2" py="2" pz="0"/>
+          <tileInstance tileId="t14" px="3" py="2" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="2" pz="0"/>
+          <tileInstance tileId="t3" px="5" py="2" pz="0" group="g2"/>
+          <tileInstance tileId="t14" px="6" py="2" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="2" pz="0"/>
+          <tileInstance tileId="t10" px="8" py="2" pz="0" group="g2"/>
+          <tileInstance tileId="t14" px="9" py="2" pz="0"/>
+          <tileInstance tileId="t14" px="10" py="2" pz="0"/>
+          <tileInstance tileId="t14" px="11" py="2" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="2" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="2" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="2" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="3" pz="0"/>
+          <tileInstance tileId="t7" px="1" py="3" pz="0"/>
+          <tileInstance tileId="t14" px="2" py="3" pz="0"/>
+          <tileInstance tileId="t14" px="3" py="3" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="3" pz="0"/>
+          <tileInstance tileId="t0" px="5" py="3" pz="0" group="g2"/>
+          <tileInstance tileId="t14" px="6" py="3" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="3" pz="0"/>
+          <tileInstance tileId="t14" px="8" py="3" pz="0"/>
+          <tileInstance tileId="t14" px="9" py="3" pz="0"/>
+          <tileInstance tileId="t14" px="10" py="3" pz="0"/>
+          <tileInstance tileId="t1" px="11" py="3" pz="0"/>
+          <tileInstance tileId="t4" px="12" py="3" pz="0"/>
+          <tileInstance tileId="t10" px="13" py="3" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="3" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="2" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="3" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="5" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="6" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="8" py="4" pz="0" isAccessPoint="1"/>
+          <tileInstance tileId="t14" px="9" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="10" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="11" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="4" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="5" pz="0"/>
+          <tileInstance tileId="t11" px="2" py="5" pz="0" group="g9"/>
+          <tileInstance tileId="t14" px="3" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="5" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="6" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="8" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="9" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="10" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="11" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="5" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="6" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="6" pz="0"/>
+          <tileInstance tileId="t0" px="2" py="6" pz="0" group="g9"/>
+          <tileInstance tileId="t14" px="3" py="6" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="6" pz="0"/>
+          <tileInstance tileId="t14" px="5" py="6" pz="0"/>
+          <tileInstance tileId="t3" px="6" py="6" pz="0" group="g3"/>
+          <tileInstance tileId="t0" px="7" py="6" pz="0" group="g3"/>
+          <tileInstance tileId="t10" px="8" py="6" pz="0" group="g3"/>
+          <tileInstance tileId="t14" px="9" py="6" pz="0"/>
+          <tileInstance tileId="t14" px="10" py="6" pz="0"/>
+          <tileInstance tileId="t7" px="11" py="6" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="6" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="6" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="6" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="7" pz="0"/>
+          <tileInstance tileId="t5" px="1" py="7" pz="0" group="g9"/>
+          <tileInstance tileId="t0" px="2" py="7" pz="0" group="g9"/>
+          <tileInstance tileId="t14" px="3" py="7" pz="0"/>
+          <tileInstance tileId="t10" px="4" py="7" pz="0" group="g9"/>
+          <tileInstance tileId="t14" px="5" py="7" pz="0"/>
+          <tileInstance tileId="t14" px="6" py="7" pz="0"/>
+          <tileInstance tileId="t4" px="7" py="7" pz="0" group="g3"/>
+          <tileInstance tileId="t10" px="8" py="7" pz="0" group="g3"/>
+          <tileInstance tileId="t14" px="9" py="7" pz="0"/>
+          <tileInstance tileId="t14" px="10" py="7" pz="0"/>
+          <tileInstance tileId="t14" px="11" py="7" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="7" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="7" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="7" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="8" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="8" pz="0"/>
+          <tileInstance tileId="t12" px="2" py="8" pz="0" group="g9"/>
+          <tileInstance tileId="t14" px="3" py="8" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="8" pz="0"/>
+          <tileInstance tileId="t14" px="5" py="8" pz="0"/>
+          <tileInstance tileId="t14" px="6" py="8" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="8" pz="0"/>
+          <tileInstance tileId="t14" px="8" py="8" pz="0"/>
+          <tileInstance tileId="t14" px="9" py="8" pz="0"/>
+          <tileInstance tileId="t14" px="10" py="8" pz="0"/>
+          <tileInstance tileId="t0" px="11" py="8" pz="0"/>
+          <tileInstance tileId="t10" px="12" py="8" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="8" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="8" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="2" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="3" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="5" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="6" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="8" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="9" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="10" py="9" pz="0"/>
+          <tileInstance tileId="t12" px="11" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="9" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="2" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="3" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="5" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="6" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="8" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="9" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="10" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="11" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="10" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="11" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="11" pz="0"/>
+          <tileInstance tileId="t14" px="2" py="11" pz="0"/>
+          <tileInstance tileId="t14" px="3" py="11" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="11" pz="0"/>
+          <tileInstance tileId="t14" px="5" py="11" pz="0"/>
+          <tileInstance tileId="t14" px="6" py="11" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="11" pz="0"/>
+          <tileInstance tileId="t15" px="8" py="11" pz="0" group="g0"/>
+          <tileInstance tileId="t15" px="9" py="11" pz="0" group="g0"/>
+          <tileInstance tileId="t9" px="10" py="11" pz="0" group="g0"/>
+          <tileInstance tileId="t14" px="11" py="11" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="11" pz="0"/>
+          <tileInstance tileId="t7" px="13" py="11" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="11" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="12" pz="0"/>
+          <tileInstance tileId="t3" px="2" py="12" pz="0" group="g15"/>
+          <tileInstance tileId="t14" px="3" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="5" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="6" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="8" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="9" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="10" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="11" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="12" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="13" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="13" pz="0"/>
+          <tileInstance tileId="t3" px="2" py="13" pz="0" group="g15"/>
+          <tileInstance tileId="t14" px="3" py="13" pz="0"/>
+          <tileInstance tileId="t0" px="4" py="13" pz="0" group="g15"/>
+          <tileInstance tileId="t10" px="5" py="13" pz="0" group="g15"/>
+          <tileInstance tileId="t14" px="6" py="13" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="13" pz="0"/>
+          <tileInstance tileId="t15" px="8" py="13" pz="0" group="g0"/>
+          <tileInstance tileId="t15" px="9" py="13" pz="0" group="g0"/>
+          <tileInstance tileId="t8" px="10" py="13" pz="0" group="g0"/>
+          <tileInstance tileId="t14" px="11" py="13" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="13" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="13" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="13" pz="0"/>
+          <tileInstance tileId="t14" px="0" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="1" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="2" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="3" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="4" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="5" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="6" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="7" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="8" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="9" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="10" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="11" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="12" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="13" py="14" pz="0"/>
+          <tileInstance tileId="t14" px="14" py="14" pz="0"/>
+          <tileInstance tileId="t2" px="11" py="0" pz="1"/>
+          <tileInstance tileId="t2" px="6" py="2" pz="1" group="g2"/>
+          <tileInstance tileId="t13" px="7" py="2" pz="1" group="g2"/>
+          <tileInstance tileId="t4" px="5" py="3" pz="1" group="g2"/>
+          <tileInstance tileId="t10" px="7" py="6" pz="1" group="g3"/>
+          <tileInstance tileId="t13" px="2" py="7" pz="1" group="g9"/>
+          <tileInstance tileId="t13" px="3" py="7" pz="1" group="g9"/>
+          <tileInstance tileId="t2" px="1" py="8" pz="1" group="g9"/>
+          <tileInstance tileId="t2" px="2" py="8" pz="1" group="g9"/>
+          <tileInstance tileId="t2" px="0" py="13" pz="1" group="g15"/>
+          <tileInstance tileId="t2" px="1" py="13" pz="1" group="g15"/>
+          <tileInstance tileId="t13" px="3" py="13" pz="1" group="g15"/>
+          <tileInstance tileId="t4" px="11" py="0" pz="2"/>
+          <tileInstance tileId="t0" px="1" py="8" pz="2" group="g9"/>
+          <tileInstance tileId="t7" px="11" py="0" pz="3"/>
+        </tileInstances>
+      </map>
+    </maps>
+  </library>
+</OpenSpaceEditor>
