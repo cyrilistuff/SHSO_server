@@ -31,6 +31,36 @@ def user_balances(db, user_id, lock_row):
 	}
 
 
+def user_owns_mission(db, user_id, mission_name):
+	rows = db.executeQuery(
+		"SELECT 1 FROM shso.missions m "
+		"INNER JOIN shso.inventory i ON i.type=m.ownable_type_id "
+		"WHERE i.UserID=" + str(user_id)
+		+ " AND i.category='m' AND m.name='" + sql_text(mission_name) + "' LIMIT 1")
+	return rows is not None and rows.size() > 0
+
+
+def initialize_new_account(db, user_id):
+	"""Idempotently grants only the configured starter content.
+
+	Balances and Agent status are normally supplied by database column defaults;
+	this helper exists for registration paths and tests that create the user row
+	before granting starter ownables.
+	"""
+	for hero_name in economy_config.STARTER_CONTENT["heroes"]:
+		if not db.executeCommand(
+			"INSERT IGNORE INTO shso.heroes (UserID, Name) VALUES ("
+			+ str(user_id) + ", '" + sql_text(hero_name) + "')"):
+			return 0
+	for mission in economy_config.STARTER_CONTENT["missions"]:
+		mission_type = int(mission[1])
+		if not db.executeCommand(
+			"INSERT IGNORE INTO shso.inventory (UserID, type, category, subscriber_only) VALUES ("
+			+ str(user_id) + ", " + str(mission_type) + ", 'm', 0)"):
+			return 0
+	return 1
+
+
 def queue_notification(db, user_id, message_type, guid, success, error_code, balance):
 	value = "NULL"
 	if balance is not None:
