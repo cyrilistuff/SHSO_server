@@ -61,9 +61,8 @@ class turn_in_score(HttpServlet):
 			return
 		mission_id = str(active[0].getItem("MissionID"))
 		if economy_config.CONTENT_POLICY["respect_mission_availability"]:
-			available = db.executeQuery("SELECT 1 FROM shso.missions WHERE name='" + economy_service.sql_text(mission_id) + "' AND is_announced=1 LIMIT 1")
-			if available is None or available.size() == 0:
-				write_response(response, 403, "mission is locked")
+			if not economy_service.user_owns_mission(db, user_id, mission_id):
+				write_response(response, 403, "mission is not owned")
 				return
 		medal = int(request_value(request, "medal", 0))
 		score = int(request_value(request, "score", 0))
