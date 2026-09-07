@@ -1,0 +1,62 @@
+services:
+    shsodb:
+        container_name: shsodb
+        image: mysql:9
+        environment:
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_ROOT_PASSWORD: "1234556789"
+        restart: always
+        ports:
+            - "3306:3306"
+        volumes:
+            - "./shso_db_init.sql:/docker-entrypoint-initdb.d/1.sql"
+            - ./shsu-mysql:/var/lib/mysql
+        networks:
+            - db_network
+    shso-notification:
+        container_name: shso-notification
+        restart: always
+        links:
+            - "shsodb"
+        build:
+            context: ./
+            dockerfile: shso-server/Dockerfile
+        volumes:
+            - ./shso-server/sf-notification/Server/sfsExtensions:/sfs/Server/sfsExtensions
+            - ./shso-server/sf-notification/Server/lib/mysql.jar:/sfs/Server/lib/mysql.jar
+            - ./shso-server/sf-notification/Server/config.xml:/sfs/Server/config.xml
+            - ./shso-server/sf-notification/Server/licence.sfl:/sfs/Server/licence.sfl
+            - ./shso-server/sf-notification/jre/lib/ext/com.mysql.jdbc.jar:/sfs/jre/lib/ext/com.mysql.jdbc.jar
+        depends_on:
+            - shsodb
+        ports:
+            - "9389:9389"
+            - "8080:8080"
+        networks:
+            db_network:
+    shso-game:
+        container_name: shso-game
+        restart: always
+        links:
+            - "shsodb"
+        build:
+            context: ./
+            dockerfile: shso-server/Dockerfile
+        volumes:
+            - ./shso-server/sf-game/Server/sfsExtensions:/sfs/Server/sfsExtensions
+            - ./shso-server/sf-game/Server/lib/mysql.jar:/sfs/Server/lib/mysql.jar
+            - ./shso-server/sf-game/Server/webserver/:/sfs/Server/webserver/
+            - ./shso-server/sf-game/Server/config.xml:/sfs/Server/config.xml
+            - ./shso-server/sf-game/Server/licence.sfl:/sfs/Server/licence.sfl
+            - ./shso-server/sf-game/jre/lib/ext/com.mysql.jdbc.jar:/sfs/jre/lib/ext/com.mysql.jdbc.jar
+        depends_on:
+            - shsodb
+        ports:
+            - "9339:9339"
+            - "80:80"
+        networks:
+            db_network:
+
+networks:
+    db_network:
+        driver: bridge
