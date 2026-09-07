@@ -180,6 +180,21 @@ function handleUserVars(params, user, room)
 	cnt = curRoom.getUserCount();
 	trace("curRoom.getUserCnt() = " + cnt)
 	var users = curRoom.getAllUsers()
+	// MySQL is a cache, not the presence authority.  If a client process dies
+	// before SmartFox can deliver userLost, an old row must not create a ghost
+	// playerVars/hero on the next login.  Reconcile this room against the live
+	// SmartFox membership before reading the cache.
+	var liveRoomUserIds = []
+	for (i=0;i<cnt;i++)
+		liveRoomUserIds.push(_server.escapeQuotes(users[i].getUserId().toString()))
+	if (liveRoomUserIds.length > 0)
+	{
+		var stalePresenceSql = "DELETE FROM active_players WHERE SfRoomID = "
+			+ _server.escapeQuotes(curRoom.getId().toString())
+			+ " AND (ShsoUserID <= 0 OR SfUserID NOT IN ("
+			+ liveRoomUserIds.join(",") + "))"
+		dbManager.executeCommand(stalePresenceSql)
+	}
 
 	///////// write active player info to active_players table in database.  ///////
 	//var sql = "INSERT INTO active_players (SfUserID, SfRoomID, Hero, BlobText) VALUES(" + uid.toString() + "," + curRoom.getId().toString() + ",'" + hero + "','" + blob + "')";

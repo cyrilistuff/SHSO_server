@@ -69,7 +69,7 @@ function destroy()
 {
 	trace("Bye bye!")
 		// Release the reference to the dbase manager
-	delete dbase
+	delete dbManager
 }
 
 /*

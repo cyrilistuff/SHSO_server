@@ -66,9 +66,7 @@ class update_files(HttpServlet):
 
 		hashCheckComplete = None
 		hashesAndFiles = None
-		filesToUpdate = [
-			importantFiles.keys()[0],
-		]
+		filesToUpdate = importantFiles.keys()
 		fileHashes = {}
 		fileHash = None
 		session_token = None
@@ -195,9 +193,7 @@ class update_files(HttpServlet):
 
 		hashCheckComplete = None
 		hashesAndFiles = None
-		filesToUpdate = [
-			importantFiles.keys()[0],
-		]
+		filesToUpdate = importantFiles.keys()
 		fileHashes = {}
 		session_token = None
 		username = None

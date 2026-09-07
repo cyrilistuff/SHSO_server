@@ -34,6 +34,128 @@
 
 var dbManager
 
+// Runtime scoring state for the recovered client's original brawler event
+// protocol.  The shipped client reports authoritative gameplay events to the
+// game-room escrow extension and waits for one brawler_scoring notification at
+// mission_end.  The remake server previously ignored every one of those XML
+// requests, leaving BrawlerController waiting forever after a real completion.
+// Keep this server-side and per user: the authenticated client must never fall
+// back to NetworkManagerStub's in-process result fabrication.
+var brawlerScores = {}
+
+function brawlerNumber(value)
+{
+	var number = Number(value)
+	return isNaN(number) ? 0 : number
+}
+
+// SmartFox serializes Java null through Rhino as the literal string "null".
+// EventResultMissionEvent is the shipped client contract and parses these
+// fields as integers, so normalize database values at this service boundary.
+function brawlerIntegerString(value)
+{
+	if (value == null || String(value) == "null" || String(value) == "")
+		return "0"
+	var number = Number(value)
+	return isNaN(number) ? "0" : String(Math.floor(number))
+}
+
+function brawlerStateFor(user, reset)
+{
+	var key = String(user.getName())
+	if (reset || !brawlerScores[key])
+	{
+		brawlerScores[key] = {
+			enemyScore: 0,
+			comboScore: 0,
+			gimmickScore: 0,
+			playerKOs: 0,
+			pickups: 0,
+			hero: ""
+		}
+	}
+	return brawlerScores[key]
+}
+
+function handleBrawlerEvent(cmd, params, user)
+{
+	var state = brawlerStateFor(user, cmd == "mission_start")
+	if (cmd == "mission_start")
+	{
+		state.hero = String(params.hero || "")
+		return
+	}
+	if (cmd == "enemy_defeated")
+	{
+		state.enemyScore += brawlerNumber(params.defeated) * brawlerNumber(params.scorevalue)
+		return
+	}
+	if (cmd == "attack_combo")
+	{
+		state.comboScore += brawlerNumber(params.combobonus) * brawlerNumber(params.scorevalue)
+		return
+	}
+	if (cmd == "gimmick_score")
+	{
+		state.gimmickScore += brawlerNumber(params.scorevalue)
+		return
+	}
+	if (cmd == "player_ko")
+	{
+		state.playerKOs += brawlerNumber(params.kos)
+		return
+	}
+	if (cmd == "pickup")
+	{
+		state.pickups++
+		return
+	}
+	if (cmd != "mission_end") return
+
+	if (params.hero) state.hero = String(params.hero)
+	var deaths = Math.min(3, Math.max(0, Math.floor(state.playerKOs)))
+	var survival = [2, 1.5, 1.25, 1][deaths]
+	var total = Math.floor((state.enemyScore + state.comboScore
+		+ state.gimmickScore) * survival)
+	var playerId = String(getUserIdFromSFS(user))
+	var currentXp = "0"
+	var heroSql = "select COALESCE(Xp, 0) as hero_xp from heroes where UserID="
+		+ _server.escapeQuotes(playerId) + " and Name='"
+		+ _server.escapeQuotes(state.hero) + "';"
+	var heroResult = dbManager.executeQuery(heroSql)
+	if (heroResult && heroResult.size() > 0)
+		currentXp = brawlerIntegerString(heroResult.get(0).getItem("hero_xp"))
+
+	var display = "<passthrough><player><id>" + playerId + "</id>"
+		+ "<player_kos>" + state.playerKOs + "</player_kos>"
+		+ "<enemy_kos>" + state.enemyScore + "</enemy_kos>"
+		+ "<gimmick_bonus>" + state.gimmickScore + "</gimmick_bonus>"
+		+ "<combo_bonus>" + state.comboScore + "</combo_bonus>"
+		+ "</player></passthrough>"
+	var response = {}
+	response._cmd = "notification"
+	response.message_type = "brawler_scoring"
+	response.total_score = brawlerIntegerString(total)
+	response.kos = brawlerIntegerString(state.playerKOs)
+	response.pickups = brawlerIntegerString(state.pickups)
+	response.leveled_up = ""
+	response.hero_name = state.hero
+	response.player_ids = playerId
+	response.hero_current_xp = brawlerIntegerString(currentXp)
+	response.bonus_xp = "0"
+	response.silver = "0"
+	response.tickets = "0"
+	response.xp = "0"
+	response.ownable_type_id = ""
+	response.reward_tier = "1"
+	response.display_data = display
+	trace("brawler_scoring user=" + user.getName() + " hero=" + state.hero
+		+ " score=" + response.total_score + " xp=" + response.hero_current_xp
+		+ " kos=" + response.kos + " pickups=" + response.pickups)
+	_server.sendResponse(response, -1, null, [user], "xml")
+	delete brawlerScores[String(user.getName())]
+}
+
 
 /* 
 * Initializion point:
@@ -76,7 +198,7 @@ function destroy()
 {
 	trace("Bye bye!")
 		// Release the reference to the dbase manager
-		delete dbase
+	delete dbManager
 }
 
 
@@ -145,6 +267,15 @@ function handleRequest(cmd, params, user, fromRoom, protocol)
 		{
 			case "hero_create":
 				handleHeroCreate(params, user, fromRoom)
+			break
+			case "mission_start":
+			case "enemy_defeated":
+			case "attack_combo":
+			case "pickup":
+			case "gimmick_score":
+			case "player_ko":
+			case "mission_end":
+				handleBrawlerEvent(cmd, params, user)
 			break
 		}
 	}
@@ -800,7 +931,12 @@ function handleHeroCreate(params, user, room)
 	var users = curRoom.getAllUsers()
 
 	///////// write active player info to active_players table in database.  ///////
-	var sql = "INSERT INTO active_players (SfUserID, ShsoUserID, SfRoomID, Hero, BlobText) VALUES(" + _server.escapeQuotes(uid.toString()) + "," + _server.escapeQuotes(shsoID.toString()) + "," + _server.escapeQuotes(curRoom.getId().toString()) + ",'" + _server.escapeQuotes(hero) + "','" + _server.escapeQuotes(blob) + "') ON DUPLICATE KEY UPDATE Hero = '" + _server.escapeQuotes(hero) + "', BlobText = '" + _server.escapeQuotes(blob) + "'";
+	// SmartFox session IDs restart at zero when the service restarts, while the
+	// active_players table survives in MySQL.  A reused SfUserID must therefore
+	// replace the complete session identity, not only its costume payload;
+	// otherwise the current-room lookup below cannot return this player and the
+	// client never receives hero_create to replace mr_placeholder.
+	var sql = "INSERT INTO active_players (SfUserID, ShsoUserID, SfRoomID, Hero, BlobText) VALUES(" + _server.escapeQuotes(uid.toString()) + "," + _server.escapeQuotes(shsoID.toString()) + "," + _server.escapeQuotes(curRoom.getId().toString()) + ",'" + _server.escapeQuotes(hero) + "','" + _server.escapeQuotes(blob) + "') ON DUPLICATE KEY UPDATE ShsoUserID = " + _server.escapeQuotes(shsoID.toString()) + ", SfRoomID = " + _server.escapeQuotes(curRoom.getId().toString()) + ", Hero = '" + _server.escapeQuotes(hero) + "', BlobText = '" + _server.escapeQuotes(blob) + "'";
 	// trace("sql= " + sql);
 	var success = dbManager.executeCommand(sql);
 				
@@ -809,6 +945,23 @@ function handleHeroCreate(params, user, room)
 	else
 		trace("Ouch, record insertion failed")
 	/////////////////////////////////////////////////////////////////////
+
+	// active_players is only a cache of the live SmartFox room.  A client
+	// crash cannot deliver userExit/userLost, so rows from an earlier process
+	// may remain in MySQL and must not be replayed as real remote heroes.  Make
+	// the room's actual user list authoritative before sending hero_create.
+	// This is transport/presence cleanup; it does not choose or alter a hero.
+	var liveRoomUserIds = []
+	for (i=0;i<cnt;i++)
+		liveRoomUserIds.push(_server.escapeQuotes(users[i].getId().toString()))
+	if (liveRoomUserIds.length > 0)
+	{
+		var stalePresenceSql = "DELETE FROM active_players WHERE SfRoomID = "
+			+ _server.escapeQuotes(curRoom.getId().toString())
+			+ " AND (ShsoUserID <= 0 OR SfUserID NOT IN ("
+			+ liveRoomUserIds.join(",") + "))"
+		dbManager.executeCommand(stalePresenceSql)
+	}
 
 
 	for (i=0;i<cnt;i++){

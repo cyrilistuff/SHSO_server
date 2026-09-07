@@ -14,6 +14,7 @@ ex = it.gotoandplay.smartfoxserver.extensions.ExtensionHelper.instance()
 # note: smartfox is using python 2.2
 sys.path.append('/sfs/Server/webserver/webapps/root/pylibcsp')
 import pylibcsp 
+import economy_config
 import datetime
 
 current_time = datetime.datetime.now()
@@ -97,6 +98,8 @@ class user(HttpServlet):
 		error = ""
 		usersStr = ""
 		fractals = -1
+		gold = 0
+		paid = 0
 		sql = "SELECT user.* FROM shso.user user WHERE user.ID = " + escapeQuotes(userID)
 
 		queryRes = db.executeQuery(sql)
@@ -109,6 +112,11 @@ class user(HttpServlet):
 				username = row.getItem("Username")
 				display_name = row.getItem("Nick")
 				fractals = row.getItem("Fractals")
+				gold = row.getItem("Gold")
+				paid = row.getItem("Paid")
+		agent_value = "False"
+		if economy_config.is_agent(paid):
+			agent_value = "True"
 									
 
 		# Get all owned characters for this player
@@ -178,7 +186,7 @@ class user(HttpServlet):
 		w.println("  &lt;squad_level&gt;" + str(squadlevel) + "&lt;/squad_level&gt;")
 		w.println("  &lt;last_celebrated&gt;65&lt;/last_celebrated&gt;")
 		w.println("  &lt;current_challenge&gt;66&lt;/current_challenge&gt;")
-		w.println("  &lt;tracker_data&gt;0,525043,414418,511843&lt;/tracker_data&gt;")
+		w.println("  &lt;tracker_data&gt;0&lt;/tracker_data&gt;")
 		# w.println("  &lt;tracker_data&gt;&lt;/tracker_data&gt;")
 		w.println("  &lt;medallion_id&gt;" + str(last_used_medallion) + "&lt;/medallion_id&gt;")
 		w.println("  &lt;title_id&gt;" + str(last_used_title) + "&lt;/title_id&gt;")
@@ -186,22 +194,22 @@ class user(HttpServlet):
 		w.println("  &lt;sidekick_tier&gt;2&lt;/sidekick_tier&gt;")
 		w.println("  &lt;achievement_points&gt;26050&lt;/achievement_points&gt;")
 		w.println("  &lt;current_costume&gt;" + str(last_used_hero) + "&lt;/current_costume&gt;")
-		w.println("  &lt;tracker_data&gt;0,525043,414418,511843&lt;/tracker_data&gt;")
+		w.println("  &lt;tracker_data&gt;0&lt;/tracker_data&gt;")
 		w.println("  &lt;time_til_midnight&gt;" + time_until_midnight + "&lt;/time_til_midnight&gt;")
 		w.println("  &lt;extended_data&gt;&lt;LastCostume&gt;" + str(last_used_hero) + "&lt;/LastCostume&gt;&lt;LastDeckID&gt;4791457&lt;/LastDeckID&gt;&lt;FirstCardGame&gt;false&lt;/FirstCardGame&gt;&lt;DemoHack&gt;false&lt;/DemoHack&gt;&lt;/extended_data&gt;")
 		w.println("  &lt;entitlements&gt;")
 		w.println("    &lt;entitlement code=\"6d84fe391a92aa30eef19bf474f6ab6793be25ff2af44cd4935f46bda3365af1\" name=\"PlayerCountry\" value=\"US\" /&gt;")
 		w.println("    &lt;entitlement code=\"859f4b70f96ed5d2186174fb10d246d03ce72782d3eca91e7af4ff1c26ab3284\" name=\"PlayerLanguage\" value=\"en\" /&gt;")
-		w.println("    &lt;entitlement code=\"8385401e7e67855e326a7880004a49b92fe1c7adca715f39fe96dc533004466a\" name=\"SubscriptionType\" value=\"True\" /&gt;")
+		w.println("    &lt;entitlement code=\"8385401e7e67855e326a7880004a49b92fe1c7adca715f39fe96dc533004466a\" name=\"SubscriptionType\" value=\"" + agent_value + "\" /&gt;")
 		w.println("    &lt;entitlement code=\"4a28ecc14ac89cb41023599c85b045130231bf2bae308b35d8680da8cb930f4c\" name=\"ParentalFriendingDeny\" value=\"False\" /&gt;")
 		w.println("    &lt;entitlement code=\"12653bc181be54d98da281577e4fb44b85990d74b365f241eb760204cd54fcdd\" name=\"UseExternalShopping\" value=\"False\" /&gt;")
 		w.println("    &lt;entitlement code=\"a3964840914fbbf1e0cf1cfba89d85ebf85ab0c6f7fdb2052fe8e2d80deb547a\" name=\"ShieldPrizeWheelAllow\" value=\"True\" /&gt;")
-		w.println("    &lt;entitlement code=\"dcb24bd281c189e559d09313043c5b96a58e6cf958177c4886ffadb915657d59\" name=\"ShieldHeroesAllow\" value=\"True\" /&gt;")
+		w.println("    &lt;entitlement code=\"dcb24bd281c189e559d09313043c5b96a58e6cf958177c4886ffadb915657d59\" name=\"ShieldHeroesAllow\" value=\"" + agent_value + "\" /&gt;")
 		w.println("    &lt;entitlement code=\"887652e99a412db55a68e589d2e69414f9dcc857586fdab3bb4c0f1702d0e939\" name=\"ShoppingCatalog\" value=\"True\" /&gt;")
 		w.println("    &lt;entitlement code=\"9ed45013f9aea458d58523d9eb657360d650803fc9f802ba09a6c5c00be1e60a\" name=\"OpenChatAllow\" value=\"True\" /&gt;")
 		w.println("    &lt;entitlement code=\"d8c32a846361fa8489af06af6717bc049bdec947540079e908d732c5ac862633\" name=\"ShieldHQAllow\" value=\"True\" /&gt;")
 		w.println("    &lt;entitlement code=\"e877bb9327ed4d642ef078828d0f084551871a7131f8090d739843b827ca1b3a\" name=\"ParentalHQDeny\" value=\"False\" /&gt;")
-		w.println("    &lt;entitlement code=\"283e524ed6e7a8ca99f31a861f4abad7543bf3fb5918f42c3b9172590f7983dd\" name=\"IsPayingSubscriber\" value=\"True\" /&gt;")
+		w.println("    &lt;entitlement code=\"283e524ed6e7a8ca99f31a861f4abad7543bf3fb5918f42c3b9172590f7983dd\" name=\"IsPayingSubscriber\" value=\"" + agent_value + "\" /&gt;")
 		w.println("    &lt;entitlement code=\"1c3520f25dc5afb53cccf58778da8287ae29233cb1943ddd064c722a6faaefdf\" name=\"WIPAllow\" value=\"False\" /&gt;")
 		w.println("    &lt;entitlement code=\"0eb50bddecb277d95a3dbfe9b2c1a84ad64b4b57cd8c8c47e448820d8f2df5b9\" name=\"ArcadeAllow\" value=\"True\" /&gt;")
 		w.println("    &lt;entitlement code=\"682f82aea1ec79f78d588c70b9dfb90a334b06e7e1b8e64f0b3ff7d8b4f77eef\" name=\"ParentalCardGameDeny\" value=\"False\" /&gt;")
@@ -265,7 +273,7 @@ class user(HttpServlet):
 		w.println("  &lt;/heroes&gt;")
 		w.println("  &lt;currency&gt;")
 		w.println("    &lt;tokens&gt;0&lt;/tokens&gt;")
-		w.println("    &lt;coins&gt;2&lt;/coins&gt;")
+		w.println("    &lt;coins&gt;" + str(gold) + "&lt;/coins&gt;")
 		w.println("    &lt;tickets&gt;20&lt;/tickets&gt;")
 		w.println("    &lt;shards&gt;" + str(fractals) + "&lt;/shards&gt;")
 		w.println("  &lt;/currency&gt;")

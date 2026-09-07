@@ -164,7 +164,7 @@ class squad(HttpServlet):
 		# w.println("  squad_level:" + str(squadlevel) :) 
 		w.println('"last_celebrated:"' + "65" + ",") 
 		w.println('"current_challenge:"' + "66" + ",") 
-		w.println('"tracker_data:"' + "0,525043,414418,511843" + ",") 
+		w.println('"tracker_data:"' + "0" + ",") 
 		w.println('"medallion_id:"' + str(last_used_medallion) + ",") 
 		w.println('"title_id:"' + str(last_used_title) + ",") 
 		w.println('"sidekick_id:"' + str(last_used_sidekick) + ",") 

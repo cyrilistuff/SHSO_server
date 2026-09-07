@@ -82,35 +82,45 @@ def _send_per_user(session, cmd, player_id, args_builder):
 
 def _send_init_cards(session, player_id, min_id, max_id):
     def _args(ps):
-        mine = "true" if ps.player_id == player_id else "false"
+        mine = "false"
+        if ps.player_id == player_id:
+            mine = "true"
         return [min_id, max_id, mine]
     _send_per_user(session, "InitCards", player_id, _args)
 
 
 def _send_move_card(session, player_id, card_id, src, dest, card_type, visibility, src_opponent="false"):
     def _args(ps):
-        mine = "true" if ps.player_id == player_id else "false"
+        mine = "false"
+        if ps.player_id == player_id:
+            mine = "true"
         return [card_id, src, dest, mine, card_type, visibility, src_opponent]
     _send_per_user(session, "MoveCard", player_id, _args)
 
 
 def _send_new_turn(session, player_id):
     def _args(ps):
-        mine = "true" if ps.player_id == player_id else "false"
+        mine = "false"
+        if ps.player_id == player_id:
+            mine = "true"
         return [mine]
     _send_per_user(session, "NewTurn", player_id, _args)
 
 
 def _send_damage(session, defender_id, attack_card_id, casualties, src_deprecated, type_list, inflicted, attempted, become_keeper, kill_keeper):
     def _args(ps):
-        mine = "true" if ps.player_id == defender_id else "false"
+        mine = "false"
+        if ps.player_id == defender_id:
+            mine = "true"
         return [attack_card_id, _join_list(casualties), src_deprecated, mine, _join_list(type_list), inflicted, attempted, become_keeper, kill_keeper]
     _send_per_user(session, "Damage", defender_id, _args)
 
 
 def _send_poked(session, poked_player_id, timer_seconds):
     def _args(ps):
-        is_local = "true" if ps.player_id == poked_player_id else "false"
+        is_local = "false"
+        if ps.player_id == poked_player_id:
+            is_local = "true"
         return [timer_seconds, is_local]
     _send_per_user(session, "Poked", poked_player_id, _args)
 
@@ -158,7 +168,9 @@ class GameSession(object):
         self.players[int(player_state.player_id)] = player_state
 
     def other_player_id(self, pid):
-        return 1 if int(pid) == 0 else 0
+        if int(pid) == 0:
+            return 1
+        return 0
 
 
 # Handlers
@@ -196,8 +208,12 @@ def handleReady(params, who, roomId):
     session = _ensure_session(roomId)
     users = _get_room_users(roomId)
     player_id = int(params[0])
-    deck_recipe = params[1] if len(params) > 1 else ""
-    hero = params[2] if len(params) > 2 else ""
+    deck_recipe = ""
+    if len(params) > 1:
+        deck_recipe = params[1]
+    hero = ""
+    if len(params) > 2:
+        hero = params[2]
 
     ps = PlayerState(who, player_id, hero, deck_recipe, False)
     session.add_player(ps)
@@ -246,7 +262,9 @@ def _initialize_game(session, users):
 
     # Coin flip / power level
     coin = random.random() < 0.5
-    session.power_level = 1 if coin else 0
+    session.power_level = 0
+    if coin:
+        session.power_level = 1
     for pid in session.players.keys():
         _send_cardsa(users, "SetPower", pid, session.power_level, str(coin).lower())
 
@@ -279,8 +297,12 @@ def handleCardPicked(params, who, roomId):
     if session.pending_pick is None:
         return
     pid = int(params[0])
-    card_id = params[1] if len(params) > 1 else ""
-    pass_str = params[2] if len(params) > 2 else "false"
+    card_id = ""
+    if len(params) > 1:
+        card_id = params[1]
+    pass_str = "false"
+    if len(params) > 2:
+        pass_str = params[2]
     do_pass = str(pass_str).lower() == "true"
 
     if pid != session.pending_pick["player_id"]:
@@ -355,7 +377,9 @@ def _handle_block_pick(session, users, pid, card_id):
 
 
 def _resolve_damage(session, users, block_pass=False):
-    defender_id = session.pending_pick["player_id"] if session.pending_pick else session.other_player_id(session.turn_offense)
+    defender_id = session.other_player_id(session.turn_offense)
+    if session.pending_pick:
+        defender_id = session.pending_pick["player_id"]
     attacker_id = session.other_player_id(defender_id)
     defender = session.players[defender_id]
 

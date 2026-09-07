@@ -154,11 +154,6 @@ class potion_persist(HttpServlet):
 		w.println("  <headers>") 
 		w.println("	<Content-Type>text/html; charset=utf-8</Content-Type>") 
 		w.println("  </headers>") 
-		w.println("  <body>") 
- 
-		 
-				 
- 
 		#w.println("  &lt;persist&gt;") 
 		# w.println("  &lt;player_id&gt;1&lt;/player_id&gt;") 
 		# w.println("  &lt;potion&gt;") 
@@ -166,9 +161,9 @@ class potion_persist(HttpServlet):
 		# w.println("  &lt;/potion&gt;") 
 		# try: 
 		if len(expiredPotions) > 0: 
-			 
-			 
-			w.println(expiredPotions) 
+			w.println("  <body>" + expiredPotions + "</body>") 
+		else:
+			w.println("  <body></body>")
 			 
  
 			#Remove that potion from the DB 
@@ -178,7 +173,6 @@ class potion_persist(HttpServlet):
 			# w.println(str(e)) 
  
 		#w.println("  &lt;/persist&gt;") 
-		w.println(  "</body>") 
 		w.println("</response>") 
 		 
 		w.close()

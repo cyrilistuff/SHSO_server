@@ -778,6 +778,7 @@ CREATE TABLE `user` (
   `RegConfirmed` int NOT NULL DEFAULT '0',
   `PassHash` varchar(32) NOT NULL DEFAULT '0',
   `Paid` int NOT NULL DEFAULT '1',
+  `Gold` int NOT NULL DEFAULT '0',
   `RegDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Fractals` int NOT NULL DEFAULT '5000',
   `isBanned` tinyint NOT NULL DEFAULT '0',
@@ -1130,5 +1131,19 @@ DELIMITER ;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Durable cross-server notifications used by economy transactions.
+CREATE TABLE IF NOT EXISTS `pending_rtc_notifications` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `PlayerID` bigint NOT NULL,
+  `MessageType` varchar(64) NOT NULL,
+  `Guid` varchar(128) NOT NULL,
+  `Success` varchar(8) NOT NULL,
+  `ErrorCode` varchar(128) NOT NULL,
+  `Balance` bigint DEFAULT NULL,
+  `Delivered` tinyint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `pending_player` (`PlayerID`,`Delivered`,`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dump completed on 2026-05-30 12:16:09

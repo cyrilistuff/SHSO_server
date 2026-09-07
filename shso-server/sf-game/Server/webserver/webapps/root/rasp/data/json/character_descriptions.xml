@@ -37,11 +37,11 @@
 			<name>archangel</name>
 			<family>archangel</family>
 		</hero>
-    <hero>
-      <name>archangel_x_force</name>
-      <family>archangel</family>
-    </hero>
-    <hero>
+		<hero>
+			<name>archangel_x_force</name>
+			<family>archangel</family>
+		</hero>
+		<hero>
 			<name>beast</name>
 			<family>beast</family>
 		</hero>
@@ -109,11 +109,11 @@
 			<name>cyclops_astonishing</name>
 			<family>cyclops</family>
 		</hero>
-    <hero>
-      <name>cyclops_first</name>
-      <family>cyclops</family>
-    </hero>
-    <hero>
+		<hero>
+			<name>cyclops_first</name>
+			<family>cyclops</family>
+		</hero>
+		<hero>
 			<name>daredevil</name>
 			<family>daredevil</family>
 		</hero>
@@ -133,18 +133,17 @@
 			<name>deadpool</name>
 			<family>deadpool</family>
 		</hero>
-    <hero>
-      <name>deadpool_pirate</name>
-      <family>deadpool</family>
-    </hero>
-    <hero>
+		<hero>
+			<name>deadpool_pirate</name>
+			<family>deadpool</family>
+		</hero>
+		<hero>
 			<name>deadpool_x_force</name>
 			<family>deadpool</family>
 		</hero>
 		<hero>
 			<name>dormammu_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</hero>
 		<hero>
 			<name>drax</name>
@@ -278,11 +277,11 @@
 			<name>iron_man</name>
 			<family>iron_man</family>
 		</hero>
-    <hero>
-      <name>iron_man_2020</name>
-      <family>iron_man</family>
-    </hero>
-    <hero>
+		<hero>
+			<name>iron_man_2020</name>
+			<family>iron_man</family>
+		</hero>
+		<hero>
 			<name>iron_man_arctic</name>
 			<family>iron_man</family>
 		</hero>
@@ -428,8 +427,7 @@
 		</hero>
 		<hero>
 			<name>rocket_raccoon</name>
-			<family>
-			</family>
+			<family></family>
 		</hero>
 		<hero>
 			<name>rogue</name>
@@ -475,11 +473,11 @@
 			<name>spider_girl</name>
 			<family>spider_girl</family>
 		</hero>
-    <hero>
-      <name>spider_girl_black</name>
-      <family>spider_girl</family>
-    </hero>
-    <hero>
+		<hero>
+			<name>spider_girl_black</name>
+			<family>spider_girl</family>
+		</hero>
+		<hero>
 			<name>spider_man</name>
 			<family>spider_man</family>
 		</hero>
@@ -511,10 +509,10 @@
 			<name>spider_man_eote</name>
 			<family>spider_man</family>
 		</hero>
-    <hero>
-      <name>spider_man_first</name>
-      <family>spider_man</family>
-    </hero>
+		<hero>
+			<name>spider_man_first</name>
+			<family>spider_man</family>
+		</hero>
 		<hero>
 			<name>spider_man_future</name>
 			<family>spider_man</family>
@@ -679,8 +677,7 @@
 		</villain>
 		<villain>
 			<name>annihilus_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 		<villain>
 			<name>annihilus_playable</name>
@@ -736,8 +733,7 @@
 		</villain>
 		<villain>
 			<name>enchantress_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 		<villain>
 			<name>enchantress_playable</name>
@@ -745,8 +741,7 @@
 		</villain>
 		<villain>
 			<name>fin_fang_foom_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 		<villain>
 			<name>green_goblin_boss</name>
@@ -802,13 +797,11 @@
 		</villain>
 		<villain>
 			<name>loki_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 		<villain>
 			<name>loki_classic_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 		<villain>
 			<name>loki_thor2_playable</name>
@@ -816,8 +809,7 @@
 		</villain>
 		<villain>
 			<name>magneto2_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 		<villain>
 			<name>magneto_boss</name>
@@ -829,8 +821,7 @@
 		</villain>
 		<villain>
 			<name>modok_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 		<villain>
 			<name>modok_playable</name>
@@ -866,8 +857,7 @@
 		</villain>
 		<villain>
 			<name>ronan</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 		<villain>
 			<name>sabretooth_boss</name>
@@ -895,8 +885,7 @@
 		</villain>
 		<villain>
 			<name>surtur_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 		<villain>
 			<name>taskmaster_playable</name>
@@ -904,8 +893,7 @@
 		</villain>
 		<villain>
 			<name>thanos_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 		<villain>
 			<name>thanos_playable</name>
@@ -913,8 +901,7 @@
 		</villain>
 		<villain>
 			<name>titanium_man_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 		<villain>
 			<name>titanium_man_playable</name>
@@ -922,8 +909,7 @@
 		</villain>
 		<villain>
 			<name>ultron_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 		<villain>
 			<name>ultron_playable</name>
@@ -943,8 +929,11 @@
 		</villain>
 		<villain>
 			<name>ymir_boss</name>
-			<family>
-			</family>
+			<family></family>
 		</villain>
 	</villains>
+	<hero>
+		<name>captain_america_clone_test</name>
+		<family>captain_america</family>
+	</hero>
 </CharacterDescriptions>

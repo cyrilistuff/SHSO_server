@@ -178,18 +178,53 @@ def handleInternalEvent(evt):
 		else: 
 			response["_cmd"] = "logKO"
 		_server.sendResponse(response, -1, None, [user])
+		if error == "":
+			# Reconnect recovery: acknowledgements committed while this RTC
+			# channel was unavailable must not remain stranded indefinitely.
+			deliverPendingNotifications(user)
 
 
 
 
 def handlePing(params, who, roomId):
+	deliverPendingNotifications(who)
 	response = {}
 	response["_cmd"] = "ping"
 
 	_server.sendResponse(response, -1, None, [who])
 	
 def handleKeepAlive(params, who, roomId):
+	deliverPendingNotifications(who)
 	response = {}
 	response["_cmd"] = "keepAlive"
 
 	_server.sendResponse(response, -1, None, [who])
+
+
+def deliverPendingNotifications(who):
+	# Purchases are committed by the HTTP service, while the shipped client
+	# receives their completion on this separate notification connection.
+	# Drain only this authenticated user's durable queue during the connection's
+	# normal heartbeat; this avoids fabricating a completion in the client.
+	account = db.executeQuery("SELECT ID FROM shso.user WHERE Nick='" + escapeQuotes(who.getName()) + "' OR Username='" + escapeQuotes(who.getName()) + "' LIMIT 1")
+	if (account is None) or (account.size() == 0):
+		return
+
+	playerID = account.get(0).getItem("ID")
+	pending = db.executeQuery("SELECT ID, MessageType, Guid, Success, ErrorCode, Balance FROM shso.pending_rtc_notifications WHERE Delivered=0 AND PlayerID=" + str(playerID) + " ORDER BY ID LIMIT 20")
+	if pending is None:
+		return
+
+	for row in pending:
+		response = {}
+		response["_cmd"] = "notification"
+		response["message_type"] = str(row.getItem("MessageType"))
+		response["success"] = str(row.getItem("Success"))
+		response["error_code"] = str(row.getItem("ErrorCode"))
+		response["guid"] = str(row.getItem("Guid"))
+		balance = row.getItem("Balance")
+		if balance is not None:
+			response["balance"] = str(balance)
+		_server.sendResponse(response, -1, None, [who])
+		db.executeCommand("UPDATE shso.pending_rtc_notifications SET Delivered=1 WHERE ID=" + str(row.getItem("ID")))
+		_server.trace("Delivered " + response["message_type"] + " player=" + str(playerID) + " guid=" + response["guid"])
