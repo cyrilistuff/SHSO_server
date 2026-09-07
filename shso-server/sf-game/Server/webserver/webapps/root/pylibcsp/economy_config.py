@@ -5,7 +5,7 @@ with SmartFoxServer. Values marked ``unresolved`` are intentionally easy to
 replace when corrected historical values are supplied.
 """
 
-CONFIG_VERSION = 1
+CONFIG_VERSION = 2
 
 CONTENT_POLICY = {
 	"respect_catalog_visibility": 1,
@@ -15,9 +15,33 @@ CONTENT_POLICY = {
 	"revival_reference_catalog": "reference/revival/shopping_catalog.json",
 }
 
+# Fresh-account defaults are deliberately conservative. Zero starting currency
+# is a restoration default, not a claim that zero is the final historical value.
+# It prevents the revival-era 5,000 Fractal grant from bypassing progression and
+# remains easy to change once a reliable historical value is recovered.
 CURRENCY = {
 	"new_account_gold": 0,
-	"new_account_fractals": 5000,
+	"new_account_fractals": 0,
+}
+
+# The user intentionally selected the original pre-Recharged starter quartet.
+# Starter missions are kept here as an explicit/configurable set because their
+# exact late-2016 starter status is less certain than the hero quartet.
+STARTER_CONTENT = {
+	"agent": 0,
+	"heroes": (
+		"ms_marvel",
+		"thing",
+		"cyclops",
+		"falcon",
+	),
+	"missions": (
+		("m_1002_1_SuperSkrull001", 1288),
+		("m_1009_1_GreenGoblin001", 1290),
+		("m_1014_1_Annihilus001", 1296),
+		("m_1005_1_Magneto001", 12725),
+		("m_1020_1_MoleMan001", 20549),
+	),
 }
 
 CATALOG_PRICING = {
