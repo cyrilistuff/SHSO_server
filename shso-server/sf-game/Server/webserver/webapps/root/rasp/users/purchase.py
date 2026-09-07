@@ -97,6 +97,12 @@ class purchase(HttpServlet):
 				return
 			grant_sql = "INSERT INTO shso.heroes (UserID, Name) VALUES (" + str(user_id) + ", '" + economy_service.sql_text(name) + "')"
 		else:
+			if category == "m":
+				owned = db.executeQuery("SELECT 1 FROM shso.inventory WHERE UserID=" + str(user_id) + " AND type=" + str(item.getItem("ownable_type_id")) + " AND category='m' LIMIT 1")
+				if owned is not None and owned.size() > 0:
+					db.executeCommand("ROLLBACK")
+					write_response(response, 409, "mission already owned")
+					return
 			grant_sql = "INSERT INTO shso.inventory (UserID, type, category, subscriber_only) VALUES (" + str(user_id) + ", " + str(item.getItem("ownable_type_id")) + ", '" + economy_service.sql_text(category) + "', " + str(item.getItem("subscriber_only")) + ") ON DUPLICATE KEY UPDATE quantity=quantity+1"
 
 		new_balance = balances[balance_key] - price
